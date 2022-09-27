@@ -61,8 +61,8 @@ export const TemaDetail = () => {
 
                     <div>
                       <h3>Descripción del problema:</h3>
-                      {urlProblem!==null ? (
-                        <div>
+
+                      {urlProblem!==null ?  <div>
   <span>{tema?.DescripTema?.replace(urlProblem,"" )}</span>
                    
                                <a
@@ -73,28 +73,31 @@ export const TemaDetail = () => {
                                 {urlProblem[0] }        
                         </a>
                           </div>
-                      ) : (
+                      
+                  : (
                         <p>{tema.DescripTema}</p>
-                      )}{" "}
-                    </div>
-                    <div>
-                      <h3>Solución del problema:</h3>
+                      )}{" "}  
+                      
+                      
+                      
+                {urlSol!==null ?                                        <div>
 
-                      {urlSol!==null (
-                        <div>
-                        <span>{tema?.SolucionTema?.replace(urlSol,"")}</span>
-                        <a
+                                    <h3>Solución del problema:</h3>
+              
+                                      <div>
+                                      <span>{tema?.SolucionTema?.replace(urlSol,"")}</span>
+                                      <a
+              
+                                                                rel="noopener noreferrer"
+                                        href={urlSol[0].slice(tema?.SolucionTema)}
+                                        target="_blank"
+                                        >
+              {urlSol[0]}
+                          </a>
+                                        </div>
+                                        </div>
+                                  :(<p>{tema.SolucionTema}</p>) }
 
-                                                  rel="noopener noreferrer"
-                          href={urlSol[0].slice(tema?.SolucionTema)}
-                          target="_blank"
-                          >
-{urlSol[0]}
-            </a>
-                          </div>
-                      ) : (
-                        <p>{tema.SolucionTema}</p>
-                      )}
                       {tema.FileReferencia.data!==undefined ?
                       <div className={styles.documentos}>
                         <div className={styles.buttonU}>
