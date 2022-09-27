@@ -1,0 +1,36 @@
+.searchTerm {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  input {
+    border: 1px solid #347cc3;
+    padding: 0px 0px 0px 1rem;
+    border-radius: 3px 0px 0px 3px;
+    outline: none;
+    width: 45%;
+    font-size: 12px;
+  }
+
+  button {
+    background-color: #347cc3;
+    border-radius: 0px 3px 3px 0px;
+    padding: 0.4rem 0.3rem;
+    color: white;
+  }
+}
+.BtnSearch {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+@media (height > 600px) {
+  .searchTerm {
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 70%;
+  }
+}

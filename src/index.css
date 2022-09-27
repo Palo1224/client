@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+html{
+    position:relative;
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+
+}
+/* / #0000003a; */

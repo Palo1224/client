@@ -1,0 +1,111 @@
+.logged_user_navbar{
+  align-items: center;
+  display: flex;
+   flex-direction: column;
+  position: relative;
+
+}
+
+.logged_user_links{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logged_user_icon{
+  cursor: pointer;
+  text-align: center;
+}
+.logged_user_icon p{
+font-size: 12px;
+}
+
+
+.logouser
+{
+
+  img{
+  width: 40px;
+  margin-right: auto;
+  margin-left: auto   ;
+}
+}
+
+.logouser
+{
+  p{
+      font-size: 11px;
+      font-weight: 600;
+  margin-right: auto;
+  margin-left: auto;
+}
+}
+.logged_user_menu{
+  display: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 1px rgb(188, 188, 188);
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  top: 80px;
+  right: 50px;
+  width: 90px;
+}
+
+
+
+
+
+
+
+
+
+.logged_user_menu span:hover{
+  background-color: rgba(133, 133, 133, 0.759);
+  ;
+}
+
+.active{
+
+  display: block;
+}
+
+.option{
+  background: white;
+  color: red;
+  font-size: 13px;
+  font-weight: 500;
+}
+.option1{
+  background: white;
+  display: flex;
+  flex-direction: column;
+  color: black;
+  font-size: 13px;
+  font-weight: 500;
+}
+.option span:hover
+{
+  background-color: rgba(255, 174, 174, 0.759);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+.div_dir{
+  cursor: pointer;
+}
+
+.div_dir:hover{
+  text-decoration: underline;
+}

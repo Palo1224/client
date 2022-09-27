@@ -1,0 +1,120 @@
+.titulo {
+  margin: 3rem;
+  border-radius: 7px;
+  border: 2px solid rgb(174, 174, 174);
+  padding: 2rem;
+  width: 70%;
+  background-color: white;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.buttonVolver {
+  font-size: 14px;
+  display: flex;
+  flex-direction: row;
+}
+.detail {
+  overflow-wrap: break-word;
+  div {
+    padding-top: 10px;
+    white-space: normal;
+  }
+
+  h1 {
+    font-size: 18px;
+    font-weight: 700;
+
+    font-family: "Roboto", sans-serif;
+    gap: 10px;
+    color: #347cc3;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+  }
+
+  p {
+    text-align: left;
+    color: black;
+    padding-top: 10px;
+
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  span {
+    text-align: left;
+    color: black;
+    padding-top: 10px;
+
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  a {
+    text-align: left;
+    color: black;
+
+    padding-top: 10px;
+
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  a:link {
+    color: #347cc3;
+  }
+  a:hover {
+    text-align: left;
+    color: #347cc3;
+    padding-top: 10px;
+
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;  }
+  // span:hover {
+  //   text-align: left;
+  //   color: #347cc3;
+  //   padding-top: 10px;
+
+  //   font-size: 14px;
+  //   font-family: Arial, Helvetica, sans-serif;
+  // }
+  a:visited {
+    font-size: 14px;
+  
+    color: blue;
+  }
+}
+
+.buttonU a {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.url a {
+  color: black;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+.url a:visited {
+  font-size: 14px;
+
+  color: blue;
+}
+.url a:hover {
+  color: #347cc3;
+}
+.documentos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+@media (height>900px) {
+  .titulo {
+    width: 60%;
+  }
+}

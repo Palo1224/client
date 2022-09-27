@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+  
+  @media(max-width:900px){
+    .app__container{
+      width: 65%;
+    }
+  }

@@ -1,0 +1,170 @@
+
+.container{
+    background-color: #E6E6E6;
+    border-radius: 1rem;
+    margin:0px 1rem 1rem;
+
+    justify-content: flex-start;
+    padding:40px 30px;
+  
+  }
+  .container h2{
+    // margin-right: 160px;
+    // margin-right: auto;
+    // margin-left: auto;
+    // text-align: center;
+    font-family: 'hsg-icons', sans-serif;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+  
+  
+  }
+  .table{
+      border-collapse: collapse;
+      box-shadow: 4px 4px 8px -2px rgb(161, 161, 161);
+      border-radius: 8px;
+      width:50rem;
+      margin-right: auto;
+      margin-left: auto;
+      overflow: hidden;
+  }
+  
+  .table th{
+      padding: 12px 8px;
+      text-align: center;
+      
+      
+  }
+  .table td{
+    padding: 12px 8px;
+    text-align:center;
+    font-size: 13px;
+    
+  }
+  
+  
+  .table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    
+  }
+  .table tbody  {
+    width: 50%;    
+  }
+  
+  .table tbody tr:nth-of-type(even){
+      background-color: white;
+  }
+  
+  .table tbody tr:nth-of-type(odd){
+      background-color: rgb(238, 238, 238);
+  }
+  
+  .table_headers tr{
+      background-color: black;
+      color: white;
+      font-size: 15px;
+      text-align: left;
+  
+  }
+  
+  .table_headers tr th{
+      padding: 10px 8px;
+  
+  }
+  
+  
+  
+  .no_results{
+    padding: 15px 0 15px 5px;
+  }
+  
+  
+  
+  
+  .disable_button{
+      cursor: pointer;
+      font-size: 14px;
+      color: rgb(189, 11, 11);
+  }
+  
+
+  .button{
+  
+  
+    display: flex;
+    padding: 10px 9px;
+    background-color: #347cc3;
+    color: white;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    gap: 10px;
+    font-size: 14px; 
+
+    align-items: center;
+    margin-left: auto;
+    p{
+  
+  
+      font-size: 14px; 
+      text-align: justify;
+  
+    }
+  }
+  @media(height>900px)
+  {
+    .container{
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  @media(height<900px)
+  {
+    .disable_button{
+      cursor: pointer;
+      font-size: 10px;
+      color: rgb(189, 11, 11);
+  }
+  
+
+    
+    .container{
+         margin-right: auto;
+      margin-left: auto;
+      width:70%;
+      font-size:12px;
+
+    
+    }
+    .table{
+      border-collapse: collapse;
+      box-shadow: 4px 4px 8px -2px rgb(161, 161, 161);
+      border-radius: 8px;
+      text-align: center;
+
+      width:90%;
+      overflow: hidden;
+      font-size:12px;
+
+    }
+    .table th{
+      padding: 2px 2px;
+      text-align: center;
+      font-size:12px;
+
+  }
+  .table tr th{
+    padding:6px 6px;
+    text-align: center;
+    font-size:12px;
+
+}
+  .table td{
+    
+    padding: 5px 5px;
+    text-align: center;
+    font-size:12px;
+    
+  }
+  
+}

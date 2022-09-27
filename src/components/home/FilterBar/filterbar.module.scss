@@ -1,0 +1,82 @@
+.filterbar {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.inputref {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    height: 16px;
+    width: 100px;
+    border: 1px solid #347cc3;
+    padding: 0px 0px 0px 1rem;
+    border-radius: 3px 3px 3px 3px;
+    outline: none;
+  }
+  select{
+    height: 16px;
+    width: 110px;
+    border: 1px solid #347cc3;
+    padding: 0px 0px 0px 1rem;
+    border-radius: 3px 3px 3px 3px;
+    outline: none;
+   
+  }
+}
+
+@media (height > 1000px) {
+  .filterbar {
+    margin-left: auto;
+    margin-right: auto; 
+   }
+}
+@media(height<900px)
+{ 
+  .filterbar {
+    
+    font-size: 12px; 
+    label{
+      font-size:12px;
+    }
+
+  }
+  
+  }
+  .inputref {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    input {
+      height: 15px;
+      font-size: 12px;
+
+      width: 70px;
+      border: 1px solid #347cc3;
+      padding: 0px 0px 0px 1rem;
+      border-radius: 3px 3px 3px 3px;
+      outline: none;
+      background-color: white;
+
+    }
+    select{
+      height: 15px;
+      font-size: 12px;
+
+      width: 70px;
+      border: 1px solid #347cc3;
+      padding: 0px 0px 0px 1rem;
+      border-radius: 3px 3px 3px 3px;
+      outline: none;
+      background-color: white;
+     
+    }
+  
+}

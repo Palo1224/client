@@ -1,0 +1,22 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  gap: 10px;
+}
+
+.botones {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+@media (height > 600px) {
+  .cards {
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    width: 90%;
+  }
+}

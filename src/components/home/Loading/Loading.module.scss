@@ -1,0 +1,34 @@
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border-left-color: #347cc3;
+  margin-top: 55px;
+  margin-left: 37rem;
+  margin-left: auto;
+  margin-right: auto;
+
+  animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (height > 600px) {
+  // .spinner {
+  //   margin-top: 55px;
+  //   margin-left: 70rem;
+  // }
+  // .spinner2 {
+  //   margin-top: 55px;
+  //   margin-left: 60rem;
+  // }
+}
