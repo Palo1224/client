@@ -78,7 +78,7 @@ export const TemaDetail = () => {
                         <p>{tema.DescripTema}</p>
                       )}{" "}  
                       
-                      
+                      <br></br>
                       <h3>Solución del problema:</h3>
                 {urlSol!==null ?                                        <div>
 
