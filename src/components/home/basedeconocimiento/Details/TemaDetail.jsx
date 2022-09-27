@@ -79,10 +79,10 @@ export const TemaDetail = () => {
                       )}{" "}  
                       
                       
-                      
+                      <h3>Solución del problema:</h3>
                 {urlSol!==null ?                                        <div>
 
-                                    <h3>Solución del problema:</h3>
+                                   
               
                                       <div>
                                       <span>{tema?.SolucionTema?.replace(urlSol,"")}</span>
