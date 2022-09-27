@@ -61,7 +61,7 @@ export const TemaDetail = () => {
 
                     <div>
                       <h3>Descripción del problema:</h3>
-                      {/* {urlProblem ? (
+                      {urlProblem!==null ? (
                         <div>
   <span>{tema?.DescripTema?.replace(urlProblem,"" )}</span>
                    
@@ -80,7 +80,7 @@ export const TemaDetail = () => {
                     <div>
                       <h3>Solución del problema:</h3>
 
-                      {urlSol ? (
+                      {urlSol!==null (
                         <div>
                         <span>{tema?.SolucionTema?.replace(urlSol,"")}</span>
                         <a
@@ -94,7 +94,7 @@ export const TemaDetail = () => {
                           </div>
                       ) : (
                         <p>{tema.SolucionTema}</p>
-                      )} */}
+                      )}
                       {tema.FileReferencia.data!==undefined ?
                       <div className={styles.documentos}>
                         <div className={styles.buttonU}>
