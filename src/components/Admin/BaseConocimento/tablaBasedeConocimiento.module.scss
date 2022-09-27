@@ -28,6 +28,7 @@
     margin-right: auto;
     margin-left: auto;
     overflow: hidden;
+    
   }
   
   .table th{
@@ -131,7 +132,7 @@
     .container{
       margin-right: auto;
       margin-left: auto;
-      width:70rem;
+      width:auto;
 
     }
     .table{
@@ -140,8 +141,8 @@
       border-radius: 8px;
         margin-left: auto;
         margin-right: auto  ;
-      width:70rem;
-      overflow: hidden;
+        width:auto;
+        overflow: hidden;
     }
     }
 
@@ -162,8 +163,7 @@
       .container{
            margin-right: auto;
         margin-left: auto;
-        width:70%;
-        font-size:12px;
+        width:auto;        font-size:12px;
 
       
       }
