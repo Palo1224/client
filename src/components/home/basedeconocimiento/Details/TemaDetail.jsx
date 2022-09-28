@@ -9,7 +9,7 @@ import { NotFound } from "../../../../not_found/NotFound";
 import pdf from "../../../../imglogo/pdfimg.png";
 import Loading from "../../Loading/Loading";
 import { BiLinkAlt } from "react-icons/bi";
-import {FaFileVideo} from "react-icons/fa"
+import { FaFileVideo } from "react-icons/fa";
 export const TemaDetail = () => {
   const { _id } = useParams();
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export const TemaDetail = () => {
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   let urlSol = tema?.SolucionTema?.match(regex);
   let urlProblem = tema?.DescripTema?.match(regex);
-  console.log(urlProblem)
+  console.log(urlProblem);
   return (
     <div>
       <div className={styles.container}>
@@ -61,77 +61,89 @@ export const TemaDetail = () => {
 
                     <div>
                       <h3>Descripción del problema:</h3>
+                      {urlProblem !== null ? (
+                        <div>
+                          <span>
+                            {tema?.DescripTema?.replace(urlProblem, "")}
+                          </span>
 
-                      {urlProblem!==null ?  <div>
-  <span>{tema?.DescripTema?.replace(urlProblem,"" )}</span>
-                   
-                               <a
-                          rel="noopener noreferrer"
-                          href={urlProblem[0].slice(tema?.DescripTema)}
-                          target="_blank"
-                        >   
-                                {urlProblem[0] }        
-                        </a>
-                          </div>
-                      
-                  : (
+                          <a
+                            rel="noopener noreferrer"
+                            href={urlProblem[0].slice(tema?.DescripTema)}
+                            target="_blank"
+                          >
+                            {urlProblem[0]}
+                          </a>
+                        </div>
+                      ) : (
                         <p>{tema.DescripTema}</p>
-                      )}{" "}  
-                      
+                      )}{" "}
                       <br></br>
                       <h3>Solución del problema:</h3>
-                {urlSol!==null ?                                        <div>
-
-                                   
-              
-                                      <div>
-                                      <span>{tema?.SolucionTema?.replace(urlSol,"")}</span>
-                                      <a
-              
-                                                                rel="noopener noreferrer"
-                                        href={urlSol[0].slice(tema?.SolucionTema)}
-                                        target="_blank"
-                                        >
-              {urlSol[0]}
-                          </a>
-                                        </div>
-                                        </div>
-                                  :(<p>{tema.SolucionTema}</p>) }
-
-                      {tema.FileReferencia.data!==undefined ?
-                      <div className={styles.documentos}>
-                        <div className={styles.buttonU}>
-                          <br></br>
-                         
-{/* <img src={tema.FileReferencia.data} width="1000px" height="1000px"/>        */}
-       <h3>Documentos asociados:</h3>
-
-                          <a download={tema.FileReferencia.name}  id={tema.FileReferencia.type}  href={tema?.FileReferencia?.data}
-        target="_blank">                               <img width={40} src={pdf} alt="pdf" />
- </a>
-                        </div>
-                       
-                  
-                      </div>
-                    :null}
+                      {urlSol !== null ? (
+                        <div>
+                          <div>
+                            <span>
+                              {tema?.SolucionTema?.replace(urlSol, "")}
+                            </span>
+                            <a
+                              rel="noopener noreferrer"
+                              href={urlSol[0].slice(tema?.SolucionTema)}
+                              target="_blank"
+                            >
+                              {urlSol[0]}
+                            </a>
                           </div>
-                              {            tema?.url ?
+                        </div>
+                      ) : (
+                        <p>{tema.SolucionTema}</p>
+                      )}
+                      {tema.FileReferencia.data !== undefined ? (
+                        <div className={styles.documentos}>
+                          <div className={styles.buttonU}>
+                            <br></br>
+
+                            {/* <img src={tema.FileReferencia.data} width="1000px" height="1000px"/>        */}
+                            <h3>Documentos asociados:</h3>
+                            {tema?.FileReferencia.type == "application/pdf" ? (
+                              <a
+                                download={tema.FileReferencia.name}
+                                id={tema.FileReferencia.type}
+                                href={tema?.FileReferencia?.data}
+                                target="_blank"
+                              >
+                               
+                                <img width={40} src={pdf} alt="pdf" />
+                              </a>
+                            ) : (
+                              <a
+                                download={tema.FileReferencia?.name}
+                                id={tema.FileReferencia.type}
+                                href={tema.FileReferencia?.data}
+                                target="_blank"
+                              >
+                                <FaFileVideo size={50}></FaFileVideo>
+                                {/* <img width={40} src={pdf} alt="pdf" /> */}
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                    {tema?.url ? (
                       <div className={styles.url}>
                         <br></br>
-                        <h3>
-                          Vínculo asociado: 
-                        </h3>
+                        <h3>Vínculo asociado:</h3>
                         <a
                           rel="noopener noreferrer"
                           id="url"
                           href={tema.url}
                           target="_blank"
                         >
-                         <BiLinkAlt></BiLinkAlt> {tema.url}
+                          <BiLinkAlt></BiLinkAlt> {tema.url}
                         </a>
-                        
                       </div>
-                      :null}
+                    ) : null}
                     <br></br>
                     <span>
                       {tema.author}
@@ -139,13 +151,12 @@ export const TemaDetail = () => {
                     </span>
                     <span>{tema.Date}</span>
                   </div>
-                ) : (
-                  !visible ?
+                ) : !visible ? (
                   <div>
                     <Loading></Loading>
                   </div>
-                    :
-                    <div>
+                ) : (
+                  <div>
                     <NotFound></NotFound>
                   </div>
                 )}
