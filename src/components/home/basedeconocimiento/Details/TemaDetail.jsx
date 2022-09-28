@@ -40,7 +40,7 @@ export const TemaDetail = () => {
   let urlSol = tema?.SolucionTema?.match(regex);
   let urlProblem = tema?.DescripTema?.match(regex);
 
-  let position=tema?.SolucionTema.indexOf(urlSol)
+  let position=tema?.SolucionTema?.indexOf(urlSol[0])
   console.log(tema?.SolucionTema)
   console.log(position)
   return (
