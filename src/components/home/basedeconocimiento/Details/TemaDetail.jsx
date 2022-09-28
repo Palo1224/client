@@ -39,10 +39,7 @@ export const TemaDetail = () => {
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   let urlSol = tema?.SolucionTema?.match(regex);
   let urlProblem = tema?.DescripTema?.match(regex);
-
-  let position=tema?.SolucionTema?.indexOf(urlSol[0])
-  console.log(tema?.SolucionTema)
-  console.log(position)
+  console.log(urlProblem);
   return (
     <div>
       <div className={styles.container}>
@@ -115,7 +112,7 @@ export const TemaDetail = () => {
                                 href={tema?.FileReferencia?.data}
                                 target="_blank"
                               >
-                               
+                                {" "}
                                 <img width={40} src={pdf} alt="pdf" />
                               </a>
                             ) : (
