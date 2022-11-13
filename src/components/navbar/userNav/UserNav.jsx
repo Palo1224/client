@@ -49,12 +49,12 @@ const dispatch=useDispatch();
         <div className={styles.logouser}>
           
           <img src={userlogo} alt="logo user" />
-        <p>{user?.fullName}</p>
+        <p>{user?.fullname}</p>
         </div>
         <div
         className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}
         >
-        {user.idPerfiles.DescripPerfil=="Administrador" ?
+        {user.idPerfiles=="Administrador" ?
   <div className={styles.option1}>
              <span  onClick={handleInicio}>
         Inicio

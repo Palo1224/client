@@ -19,14 +19,15 @@ export const BaseConocimiento = () => {
 const navigate=useNavigate()
   const {user}=useSelector(state=>state.user)
 
-  const id=user._id
+  const id=user.id
+  
   useEffect(() => {
     dispatch(fetchTemas({id:id}));
   }, [dispatch]);
-
+  
   const { temas } = useSelector((state) => state.temas);
 
-  const handleDelete = async (_id) => {
+  const handleDelete = async (id) => {
     try {
 
       Swal.fire({
@@ -40,12 +41,12 @@ const navigate=useNavigate()
         cancelButtonText:"No"
       }).then((result) => {
         if (result.isConfirmed) {
-          handle(_id);
+          handle(id);
         }
       });
-      const handle = async (_id) => {
+      const handle = async (id) => {
         const res = await axios.delete(
-          `https://qworkapi.herokuapp.com/contenidos/${_id}`
+          `http://localhost:3001/contenidos/${id}`
         );
 
    
@@ -125,8 +126,8 @@ const navigate=useNavigate()
                 <td>{tema.DescripTema.slice(0, 70)}</td>
                 <td>
                   {tema.idPerfiles.map((e) => (
-                    <span key={e._id}>
-                      - {e.DescripPerfil}
+                    <span key={e.id}>
+                      - {e}
                       <br></br>
                     </span>
                   ))}
@@ -134,8 +135,8 @@ const navigate=useNavigate()
 
                 <td>
                   {tema.idSistemas.map((e) => (
-                    <span key={e._id}>
-                      - {e.DescripSistema}
+                    <span key={e.id}>
+                      - {e}
                       <br></br>
                     </span>
                   ))}
@@ -143,29 +144,29 @@ const navigate=useNavigate()
                 
                 
                 <td>
-                  {tema.idEmpresa.map((e) => (
-                    <span key={e._id}>
-                      - {e.DescripEmpresa}
+                  {tema.idEmpresas.map((e) => (
+                    <span key={e.id}>
+                      - {e}
                       <br></br>
                     </span>
                   ))}
                 </td>
 
 
-                <td key={tema._id}>
-                  {/* <Link to={`/admin/EditContenido/${tema._id}`}> */}
-                    <MdCreate  onClick={() => handleEdit(tema._id)} title="Editar el contenido" />{" "}
-                  {/* </Link> */}
+                <td key={tema.id}>
+                  <Link to={`/admin/EditContenido/${tema.id}`}>
+                    <MdCreate  onClick={() => handleEdit(tema.id)} title="Editar el contenido" />{" "}
+                  </Link>
                 </td>
                 <td>
-                  <Link to={`/admin/${tema._id}`}>
+                  <Link to={`/admin/${tema.id}`}>
                     <AiOutlineEye title="Ver el contenido"></AiOutlineEye>
                   </Link>
                 </td>
                 <td>
                   <FaWindowClose
                     className={styles.disable_button}
-                    onClick={() => handleDelete(tema._id)}
+                    onClick={() => handleDelete(tema.id)}
                     title="Eliminar"
                   />
                 </td>

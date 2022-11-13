@@ -18,7 +18,7 @@ export const Perfil = () => {
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activeCreacionPerfil(true))
   }
-  const handleDelete = async (_id) => {
+  const handleDelete = async (id) => {
     try {
 
       Swal.fire({
@@ -32,12 +32,12 @@ export const Perfil = () => {
         cancelButtonText:"No"
       }).then((result) => {
         if (result.isConfirmed) {
-          handle(_id);
+          handle(id);
         }
       });
-      const handle = async (_id) => {
+      const handle = async (id) => {
         await axios.delete(
-          `https://qworkapi.herokuapp.com/perfiles/${_id}`
+          `http://localhost:3001/perfiles/${id}`
         );
 
    
@@ -93,7 +93,7 @@ export const Perfil = () => {
             <td>
             <FaWindowClose
                     className={styles.disable_button}
-                    onClick={() => handleDelete(perfil._id)}
+                    onClick={() => handleDelete(perfil.id)}
                     title="Eliminar"
                   />
             </td>

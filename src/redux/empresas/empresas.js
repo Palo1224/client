@@ -6,7 +6,7 @@ export const fetchEmpresas=createAsyncThunk('empresas/fetchEmpresas',
 
 async()=>{
         try {
-            const res=await axios.get(`https://qworkapi.herokuapp.com/empresa`)
+            const res=await axios.get(`http://localhost:3001/empresa`)
             return res.data;
         } catch (error) {
             console.log(error)

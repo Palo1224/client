@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./tema.module.scss";
 import { TiDocumentText } from "react-icons/ti";
 export const Tema = ({
-  _id,
+  id,
   tituloTema,
   DescripTema,
   author,
@@ -12,7 +12,7 @@ export const Tema = ({
 }) => {
   return (
     <div>
-      <Link to={`/home/${_id}`}>
+      <Link to={`/home/${id}`}>
         <div className={styles.card}>
           <div>
             <div>

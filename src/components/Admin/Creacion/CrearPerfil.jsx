@@ -21,7 +21,7 @@ export const CrearPerfil = () => {
   const postPerfil =  async()=>{
 
     try {
-      const res= await axios.post("https://qworkapi.herokuapp.com/perfiles",{DescripPerfil})
+      const res= await axios.post("http://localhost:3001/perfiles",{DescripPerfil})
       
       if(res.data)
       {

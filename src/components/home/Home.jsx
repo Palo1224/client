@@ -10,7 +10,7 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   const {user}=useSelector(state=>state.user)
-  const id=user?._id||null
+  const id=user?.id||null
   useEffect(() => {
     if(id)
     {

@@ -8,7 +8,7 @@ export const FilterBar = () => {
   const [ref, setRef] = useState("");
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  let id = user?._id || null;
+  let id = user?.id || null;
   const [empresa, setEmpresa] = useState("");
 
   useEffect(()=>{
@@ -83,7 +83,7 @@ const {empresas}=useSelector(state=>state.empresas)
       <div>
 
         {id ?
-        user?.idPerfiles?.DescripPerfil=="Administrador" && user?.idEmpresa ? (
+        user?.idPerfiles=="Administrador" && user?.idEmpresas ? (
     
           <div className={styles.inputref}>
           <p>Empresas</p>
@@ -98,7 +98,7 @@ const {empresas}=useSelector(state=>state.empresas)
             
        {empresas &&
             empresas.map((e) => (
-                <option value={e.DescripEmpresa} key={e._id}>
+                <option value={e.DescripEmpresa} key={e.id}>
                   {e.DescripEmpresa}
                 </option>
               ))}
@@ -124,10 +124,10 @@ const {empresas}=useSelector(state=>state.empresas)
           <option disabled value="">Empresas</option>
 
           
-     {user?.idEmpresa &&
-          user.idEmpresa.map((e) => (
-              <option value={e.DescripEmpresa} key={e._id}>
-                {e.DescripEmpresa}
+     {user?.idEmpresas &&
+          user.idEmpresas.map((e) => (
+              <option value={e} key={e}>
+                {e}
               </option>
             ))}
         </select>

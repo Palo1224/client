@@ -16,11 +16,11 @@ import pdf from "../../../../imglogo/pdfimg.png";
 
 
 export const EditContenido = () => {
-  const {_id}=useParams()
+  const {id}=useParams()
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {temas} = useSelector((state) => state.temas);
-let detail = temas.find((e) => e._id == _id);
+let detail = temas.find((e) => e.id == id);
 const [load,setLoad]=useState(false)
 
 
@@ -31,7 +31,7 @@ const [load,setLoad]=useState(false)
     SolucionTema:detail?.SolucionTema,
     perfiles:detail?.idPerfiles,
     sistRefe: detail?.idSistemas,
-    empresa:detail?.idEmpresa,
+    empresa:detail?.idEmpresas,
     clasifTema: detail?.idClasif,
     validate: false,
   });
@@ -52,8 +52,8 @@ const [load,setLoad]=useState(false)
     ...state,
     perfiles: [...state.perfiles, e.target.value],
   });
-  if (perfil.find((a) => a._id == e.target.value)) {
-    let agregar = perfil.find((a) => a._id == e.target.value);
+  if (perfil.find((a) => a.id == e.target.value)) {
+    let agregar = perfil.find((a) => a.id == e.target.value);
 
     if (
       estadoperfil.length > 0 &&
@@ -75,8 +75,8 @@ const handleEmpresas = (e) => {
     ...state,
     empresa: [...state.empresa, e.target.value],
   });
-  if (empresas.find((a) => a._id == e.target.value)) {
-    let agregarempresa = empresas.find((a) => a._id == e.target.value);
+  if (empresas.find((a) => a.id == e.target.value)) {
+    let agregarempresa = empresas.find((a) => a.id == e.target.value);
     if (
       estadoEmpresa.length > 0 &&
       !estadoEmpresa
@@ -98,8 +98,8 @@ const ClickCheckedSistemaRef = (e) => {
     ...state,
     sistRefe: [...state.sistRefe, e.target.value],
   });
-  if (sistRef.find((a) => a._id == e.target.value)) {
-    let agregar = sistRef.find((a) => a._id == e.target.value);
+  if (sistRef.find((a) => a.id == e.target.value)) {
+    let agregar = sistRef.find((a) => a.id == e.target.value);
     if (
       estadoSistema.length > 0 &&
       !estadoSistema
@@ -124,7 +124,7 @@ const handleSelect = (e) => {
 
 const handleDelete = (id) => {
   const deletPerfil = state.perfiles.filter((e) => e !== id);
-  const deletEstado = estadoperfil.filter((e) => e._id !== id);
+  const deletEstado = estadoperfil.filter((e) => e.id !== id);
   setState({
     ...state,
     perfiles: deletPerfil,
@@ -133,7 +133,7 @@ const handleDelete = (id) => {
 };
 const handleDeleteEmpresa = (id) => {
   const deletEmpresa = state.empresa.filter((e) => e !== id);
-  const deletEstadoEmpresas = estadoEmpresa.filter((e) => e._id !== id);
+  const deletEstadoEmpresas = estadoEmpresa.filter((e) => e.id !== id);
   setState({
     ...state,
     empresa: deletEmpresa,
@@ -143,7 +143,7 @@ const handleDeleteEmpresa = (id) => {
 
 const handleDeleteSistRef = (id) => {
   const deletSistRef = state.sistRefe.filter((e) => e !== id);
-  const deletEstadoSistR = estadoSistema.filter((e) => e._id !== id);
+  const deletEstadoSistR = estadoSistema.filter((e) => e.id !== id);
   setState({
     ...state,
     sistRefe: deletSistRef,
@@ -205,7 +205,7 @@ const handleFile = (e) => {
   const name=e.target.files[0].name
   previewFile(file,type,name);
 };
-const postTema = async (base64EncodeFile,_id) => {
+const postTema = async (base64EncodeFile,id) => {
   try {
     
     setLoad(true)
@@ -216,7 +216,7 @@ const postTema = async (base64EncodeFile,_id) => {
 
    
         const temaM=await axios.put(
-          `https://qworkapi.herokuapp.com/contenidos/${_id}`,
+          `http://localhost:3001/contenidos/${id}`,
           {
             tituloTema: state.tituloTema,
             DescripTema: state.DescripTema,
@@ -224,7 +224,7 @@ const postTema = async (base64EncodeFile,_id) => {
             idPerfiles: estadoperfil,
             idSistemas: estadoSistema,
             idClasif: state.clasifTema,
-            author: user.fullName,
+            author: user.fullname,
             FileReferencia: base64EncodeFile,
             idEmpresa: estadoEmpresa,
             url: urla,
@@ -252,7 +252,7 @@ const postTema = async (base64EncodeFile,_id) => {
       }
       else{
         const temaM=await axios.put(
-          `https://qworkapi.herokuapp.com/contenidos/${_id}`,
+          `http://localhost:3001/contenidos/${id}`,
           {
             tituloTema: state.tituloTema,
             DescripTema: state.DescripTema,
@@ -260,7 +260,7 @@ const postTema = async (base64EncodeFile,_id) => {
             idPerfiles: estadoperfil,
             idSistemas: estadoSistema,
             idClasif: state.clasifTema,
-            author: user.fullName,
+            author: user.fullname,
             FileReferencia: previewSource,
             idEmpresa: estadoEmpresa,
             url: urla,
@@ -305,7 +305,7 @@ const handleSubmit = (e) => {
   e.preventDefault();
   if (Object.entries(error).length === 0) state.validate = true;
   state.validate
-    ? postTema(previewSource,_id)
+    ? postTema(previewSource,id)
     : Swal.fire({ icon: "error", text: "Por favor complete todo!" });
 };
 const url = (e) => {
@@ -313,7 +313,7 @@ const url = (e) => {
 };
 return (
   <div className={styles.todo}>
-    {user.idPerfiles.DescripPerfil !== "Redactor" ? (
+    {user.idPerfiles !== "Redactor" ? (
       <button onClick={handleOnclick}>
         <div className={styles.buttonVolver}>
           <TbArrowLeft size={20}></TbArrowLeft>
@@ -405,18 +405,18 @@ return (
                     </option>
                     {perfil &&
                       perfil?.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.id} key={e.id}>
                           {e.DescripPerfil}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoperfil?.map((e) => (
-                      <div key={e._id}> 
+                      <div key={e.id}> 
                         <p>
                           {e.DescripPerfil}{" "}
                           <MdClose
-                            onClick={() => handleDelete(e._id)}
+                            onClick={() => handleDelete(e.id)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -442,18 +442,18 @@ return (
                     </option>
                     {sistRef &&
                       sistRef?.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.id} key={e.id}>
                           {e.DescripSistema}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoSistema?.map((e) => (
-                      <div key={e._id}>
+                      <div key={e.id}>
                         <p>
                           {e.DescripSistema}{" "}
                           <MdClose
-                            onClick={() => handleDeleteSistRef(e._id)}
+                            onClick={() => handleDeleteSistRef(e.id)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -481,18 +481,18 @@ return (
                     </option>
                     {empresas &&
                       empresas?.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.id} key={e.id}>
                           {e.DescripEmpresa}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoEmpresa?.map((e) => (
-                      <div key={e._id}>
+                      <div key={e.id}>
                         <p>
                           {e.DescripEmpresa}
                           <MdClose
-                            onClick={() => handleDeleteEmpresa(e._id)}
+                            onClick={() => handleDeleteEmpresa(e.id)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -519,7 +519,7 @@ return (
                     </option>
                     {clasifTema &&
                       clasifTema?.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.id} key={e.id}>
                           {e.DescripClasif}
                         </option>
                       ))}
@@ -608,7 +608,7 @@ return (
         </div>
       </form>
       <p>
-        Autor: <input disabled value={user.fullName}></input>
+        Autor: <input disabled value={user.fullname}></input>
       </p>
     </div>}
   </div>

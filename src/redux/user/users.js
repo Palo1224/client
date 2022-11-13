@@ -9,7 +9,7 @@ export const fetchUser=createAsyncThunk('user/fetchUser',
 
 async(id)=>{
         try {
-            const res=await axios.get(`https://qworkapi.herokuapp.com/users/${id}`)
+            const res=await axios.get(`http://localhost:3001/users/${id}`)
             return res.data;
         } catch (error) {
             console.log(error)
@@ -21,7 +21,7 @@ export const fetchUsers=createAsyncThunk("user/fetchUsers",
 async({search ,estado,empresa})=>{
     try {
 
-        const res=await axios.get(`https://qworkapi.herokuapp.com/users?search=${search}&estado=${estado}&empresa=${empresa}`)
+        const res=await axios.get(`http://localhost:3001/users?search=${search}&estado=${estado}&empresa=${empresa}`)
         return res.data;
         
         // else{
@@ -37,7 +37,7 @@ async({search ,estado,empresa})=>{
 // export const fetchGoogleUser = createAsyncThunk('googleUser/fetchGoogleUser',
 //     async() => {
 //         try {
-//             const { data } = await axios.get('https://qworkapi.herokuapp.com/users/login/success',{
+//             const { data } = await axios.get('http://localhost:3001/users/login/success',{
 //               method:"GET",
 //               withCredentials:true,
 //             })

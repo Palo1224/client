@@ -38,8 +38,9 @@ export const NavBar = () => {
     <nav>
       <div className={styles.nav}>
         <div>
+        {console.log(user)}
         {user  && user.length>0  ?
-        user.idPerfiles?.DescripPerfil!== "Administrador" ? (
+        user.idPerfiles!== "Administrador" ? (
             <Link to="/home">
               <div className={styles.logo}>
                 <img src={logo} alt="logo cloudpos" />
@@ -56,7 +57,7 @@ export const NavBar = () => {
           </div>
           )
           :
-          user?.idPerfiles?.DescripPerfil!== "Administrador" ?
+          user?.idPerfiles!== "Administrador" ?
           <Link to="/home">
           <div className={styles.logo}>
             <img src={logo} alt="logo cloudpos" />
@@ -75,9 +76,9 @@ export const NavBar = () => {
 
             <div>
         <div>
-          {user && user?.fullName ? (
+          {user && user?.fullname ? (
 
-            user.idPerfiles.DescripPerfil == "Redactor" ? (
+            user.idPerfiles == "Redactor" ? (
               <div className={styles.titulo}>
         
                 <div className={styles.botones}>

@@ -11,7 +11,7 @@ import Loading from "../../Loading/Loading";
 import { BiLinkAlt } from "react-icons/bi";
 import { FaFileVideo } from "react-icons/fa";
 export const TemaDetail = () => {
-  const { _id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -21,12 +21,12 @@ export const TemaDetail = () => {
     setIsVisible(true);
   }, 5000);
   useEffect(() => {
-    dispatch(fetchTema(_id));
+    dispatch(fetchTema(id));
   }, [dispatch]);
 
   const handleOnclick = () => {
     dispatch(temaActions.getClean());
-    if (location.pathname == `/home/${_id}`) {
+    if (location.pathname == `/home/${id}`) {
       navigate("/home");
     } else {
       navigate("/admin");
@@ -39,7 +39,9 @@ export const TemaDetail = () => {
     /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
   let urlSol = tema?.SolucionTema?.match(regex);
   let urlProblem = tema?.DescripTema?.match(regex);
-  console.log(urlProblem);
+
+
+
   return (
     <div>
       <div className={styles.container}>

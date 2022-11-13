@@ -16,7 +16,7 @@ function App() {
   const { user } = useSelector((state) => state.user);
   let accesos = "";
   if (user != null) {
-    accesos = user.idPerfiles?.DescripPerfil;
+    accesos = user.idPerfiles;
   }
 
   return (
@@ -33,14 +33,14 @@ function App() {
             <Route path="admin" element={<Admin />} />
             <Route path="crearTema" element={<CreacionDeTema />}></Route>
             <Route
-              path="admin/EditContenido/:_id"
+              path="admin/EditContenido/:id"
               element={<EditContenido />}
             ></Route>
-            <Route path="admin/:_id" element={<TemaDetail />} />
+            <Route path="admin/:id" element={<TemaDetail />} />
 
             <Route path="admin/crearUsuario" element={<CrearUsuario />}></Route>
             <Route
-              path="admin/EditUsuario/:_id"
+              path="admin/EditUsuario/:id"
               element={<EditUsuario />}
             ></Route>
           </Route>
@@ -49,7 +49,7 @@ function App() {
         )}
         <Route>
           <Route path="/home" element={<Home />} />
-          <Route path="home/:_id" element={<TemaDetail />} />
+          <Route path="home/:id" element={<TemaDetail />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

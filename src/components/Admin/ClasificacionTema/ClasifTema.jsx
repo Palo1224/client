@@ -16,7 +16,7 @@ export const ClasifTema = () => {
     useEffect(()=>{
         dispatch(fetchClasifTema())
     },[dispatch])
-    const handleDelete = async (_id) => {
+    const handleDelete = async (id) => {
       try {
   
         Swal.fire({
@@ -30,12 +30,12 @@ export const ClasifTema = () => {
           cancelButtonText:"No"
         }).then((result) => {
           if (result.isConfirmed) {
-            handle(_id);
+            handle(id);
           }
         });
-        const handle = async (_id) => {
+        const handle = async (id) => {
           const res = await axios.delete(
-            `https://qworkapi.herokuapp.com/clasifTema/${_id}`
+            `http://localhost:3001/clasifTema/${id}`
           );
   
      
@@ -96,7 +96,7 @@ export const ClasifTema = () => {
         <td>
             <FaWindowClose
                     className={styles.disable_button}
-                    onClick={() => handleDelete(clasifTema._id)}
+                    onClick={() => handleDelete(clasifTema.id)}
                     title="Eliminar"
                   />
             </td>

@@ -18,7 +18,7 @@ export const Empresas = () => {
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activeCreacionEmpresa(true))
   }
-  const handleDelete = async (_id) => {
+  const handleDelete = async (id) => {
     try {
 
       Swal.fire({
@@ -32,12 +32,12 @@ export const Empresas = () => {
         cancelButtonText:"No"
       }).then((result) => {
         if (result.isConfirmed) {
-          handle(_id);
+          handle(id);
         }
       });
-      const handle = async (_id) => {
+      const handle = async (id) => {
        await axios.delete(
-          `https://qworkapi.herokuapp.com/empresa/${_id}`
+          `http://localhost:3001/empresa/${id}`
         );
 
    
@@ -93,7 +93,7 @@ export const Empresas = () => {
             <td>
                   <FaWindowClose
                     className={styles.disable_button}
-                    onClick={() => handleDelete(empresa._id)}
+                    onClick={() => handleDelete(empresa.id)}
                     title="Eliminar"
                   />
                 </td>

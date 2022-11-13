@@ -14,16 +14,16 @@ import { MdClose } from "react-icons/md";
 export const EditUsuario = () => {
   const dispatch = useDispatch();
   
-  const {_id}=useParams();
+  const {id}=useParams();
   const {users} = useSelector((state) => state.user);
-  let detail = users.find((e) => e._id == _id);
+  let detail = users.find((e) => e.id == id);
   const [state, setState] = useState({
-    fullName: detail.fullName,
+    fullname: detail.fullname,
     email: detail.email,
-    usuario: detail.usuario,
+    usuario: detail.usuar,
     perfiles: detail.idPerfiles,
     sistRefe:detail.idSistemas,
-    empresas:detail.idEmpresa,
+    empresas:detail.idEmpresas,
     validate:false,
   });
   const [estadoEmpresa, setestadoEmpresa] = useState(state.empresas);
@@ -59,13 +59,13 @@ export const EditUsuario = () => {
       ...state,
       empresas: [...state.empresas, e.target.value],
     });
-    if (empresas.find((a) => a._id == e.target.value)) {
-      let agregarempresa = empresas.find((a) => a._id == e.target.value);
+    if (empresas.find((a) => a.DescripEmpresa == e.target.value)) {
+      let agregarempresa = empresas.find((a) => a.DescripEmpresa == e.target.value);
       if (
         estadoEmpresa.length > 0 &&
         !estadoEmpresa
-          ?.map((el) => el.DescripEmpresa)
-          .includes(agregarempresa.DescripEmpresa)
+          ?.map((el) => el)
+          .includes(agregarempresa)
       ) {
         setestadoEmpresa([...estadoEmpresa, agregarempresa]);
       }
@@ -83,13 +83,13 @@ export const EditUsuario = () => {
       ...state,
       sistRefe: [...state.sistRefe, e.target.value],
     });
-    if (sistRef.find((a) => a._id == e.target.value)) {
-      let agregar = sistRef.find((a) => a._id == e.target.value);
+    if (sistRef.find((a) => a.DescripSistema == e.target.value)) {
+      let agregar = sistRef.find((a) => a.DescripSistema == e.target.value);
       if (
         estadoSistema.length > 0 &&
         !estadoSistema
-          ?.map((el) => el.DescripSistema)
-          .includes(agregar.DescripSistema)
+          ?.map((el) => el)
+          .includes(agregar)
       ) {
         setestadoSistema([...estadoSistema, agregar]);
       }
@@ -105,7 +105,7 @@ export const EditUsuario = () => {
   }
   const handleDeleteSistRef = (id) => {
     const deletSistRef = state.sistRefe.filter((e) => e !== id);
-    const deletEstadoSistR = estadoSistema.filter((e) => e._id !== id);
+    const deletEstadoSistR = estadoSistema.filter((e) => e.id !== id);
     setState({
       ...state,
       sistRefe: deletSistRef,
@@ -114,7 +114,7 @@ export const EditUsuario = () => {
   };
   const handleDeleteEmpresa = (id) => {
     const deletEmpresa = state.empresas.filter((e) => e !== id);
-    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e._id !== id);
+    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e.id !== id);
     setState({
       ...state,
       empresas: deletEmpresa,
@@ -135,9 +135,9 @@ export const EditUsuario = () => {
   
     if(Object.entries(error).length === 0)  state.validate=true 
 
-   !state.fullName
-    ? (error.fullName = "Ingrese un nombre!")
-    : delete error.fullName;
+   !state.fullname
+    ? (error.fullname = "Ingrese un nombre!")
+    : delete error.fullname;
     !state.usuario
     ? (error.usuario = "Ingrese un usuario!")
     : delete error.usuario;
@@ -166,16 +166,16 @@ export const EditUsuario = () => {
   };
  
 
-  const postUsuario = async (_id) => {
+  const postUsuario = async (id) => {
 
       try {
-        const res = await axios.put(`https://qworkapi.herokuapp.com/users/${_id}`, {
-          fullName: state.fullName,
-          usuario: state.usuario,
+        const res = await axios.put(`http://localhost:3001/users/${id}`, {
+          fullname: state.fullname,
+          usuar: state.usuario,
           email: state.email,
           idPerfiles: state.perfiles,
           idSistemas: estadoSistema,
-          idEmpresa:estadoEmpresa,
+          idEmpresas:estadoEmpresa,
           active: true,
           // Date:new Date( new Date().getTime() -  ( new Date().getTimezoneOffset() * 60000 ) )
         },);
@@ -210,7 +210,7 @@ export const EditUsuario = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(Object.entries(error).length === 0)  state.validate=true 
-    state.validate ? postUsuario(_id): Swal.fire({
+    state.validate ? postUsuario(id): Swal.fire({
       icon: "error",
       text: "Por favor completen todos",
       showConfirmButton: true,
@@ -254,13 +254,13 @@ export const EditUsuario = () => {
                   <input
                     type="text"
                     onChange={handleChange}
-                    name="fullName"
-                    value={state.fullName}
+                    name="fullname"
+                    value={state.fullname}
                   ></input>
                 </div>
 
-                {error.fullName && (
-                  <span className={styles.error}>{error.fullName}</span>
+                {error.fullname && (
+                  <span className={styles.error}>{error.fullname}</span>
                 )}
                 <label>Mail</label>
                 <div>
@@ -291,16 +291,16 @@ export const EditUsuario = () => {
                     </option>
                     {perfil &&
                       perfil.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.DescripPerfil} key={e.id}>
                           {e.DescripPerfil}
                         </option>
                       ))}
                   </select>
                   <br></br>
-                  {state.perfiles.DescripPerfil ?
+                  {state.perfiles ?
                   <div className={styles.added_perfiles}>
 
-                  <p>{state.perfiles.DescripPerfil}</p>
+                  <p>{state.perfiles}</p>
                   </div>:null}
                   
                   {error.perfiles ? (
@@ -321,18 +321,18 @@ export const EditUsuario = () => {
                     </option>
                     {sistRef &&
                       sistRef.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.DescripSistema} key={e.id}>
                           {e.DescripSistema}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoSistema.map((e) => (
-                      <div  key={e._id}>
+                      <div >
                         <p>
-                          {e.DescripSistema}{" "}
+                          {e}{" "}
                           <MdClose
-                            onClick={() => handleDeleteSistRef(e._id)}
+                            onClick={() => handleDeleteSistRef(e.id)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -359,18 +359,18 @@ export const EditUsuario = () => {
                       </option>
                       {empresas &&
                         empresas.map((e) => (
-                          <option value={e._id} key={e._id}>
+                          <option value={e.DescripEmpresa} key={e.id}>
                             {e.DescripEmpresa}
                           </option>
                         ))}
                     </select>
                     <div className={styles.added_perfiles}>
                       {estadoEmpresa.map((e) => (
-                        <div  key={e._id}>
+                        <div  key={e}>
                           <p>
-                            {e.DescripEmpresa}
+                            {e}
                             <MdClose
-                              onClick={() => handleDeleteEmpresa(e._id)}
+                              onClick={() => handleDeleteEmpresa(e.id)}
                               className={styles.delete_added_tech}
                             />
                           </p>

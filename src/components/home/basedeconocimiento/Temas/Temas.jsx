@@ -21,9 +21,9 @@ export const Temas = () => {
         temas.length > 0 ? (
           temas.map((e) => {
             return (
-              <div key={e._id}>
+              <div key={e.id}>
                 <Tema
-                  _id={e._id}
+                  id={e.id}
                   tituloTema={e.tituloTema}
                   DescripTema={e.DescripTema}
                   author={e.author}

@@ -6,7 +6,7 @@ import axios from "axios";
 export const fetchSistRef=createAsyncThunk("temas/fetchSistRef", async()=>{
     try {
         
-        const res= await axios.get("https://qworkapi.herokuapp.com/sistRef")
+        const res= await axios.get("http://localhost:3001/sistRef")
         return res.data
     } catch (error) {
       console.log(error)  

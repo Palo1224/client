@@ -27,15 +27,15 @@ export const Login = () => {
   const loginUser = async () => {
     try {
       const res = await axios.post(
-        "https://qworkapi.herokuapp.com/signin",
+        "http://localhost:3001/signin",
         formValues
       );
 
       if (res.data) {
         dispatch(loginSuccess(res.data));
         if (
-          res.data.idPerfiles.DescripPerfil !== "Administrador" ||
-          res.data.idPerfiles.DescripPerfil !== "Redactor"
+          res.data.idPerfiles !== "Administrador" ||
+          res.data.idPerfiles !== "Redactor"
         ) {
           window.location.href = "/home";
         }

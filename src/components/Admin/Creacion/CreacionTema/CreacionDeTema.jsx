@@ -60,8 +60,8 @@ export const CreacionDeTema = () => {
       ...state,
       perfiles: [...state.perfiles, e.target.value],
     });
-    if (perfil.find((a) => a._id == e.target.value)) {
-      let agregar = perfil.find((a) => a._id == e.target.value);
+    if (perfil.find((a) => a.DescripPerfil == e.target.value)) {
+      let agregar = perfil.find((a) => a.DescripPerfil == e.target.value);
       if (
         estadoperfil.length > 0 &&
         !estadoperfil
@@ -82,8 +82,8 @@ export const CreacionDeTema = () => {
       ...state,
       empresa: [...state.empresa, e.target.value],
     });
-    if (empresas.find((a) => a._id == e.target.value)) {
-      let agregarempresa = empresas.find((a) => a._id == e.target.value);
+    if (empresas.find((a) => a.DescripEmpresa == e.target.value)) {
+      let agregarempresa = empresas.find((a) => a.DescripEmpresa == e.target.value);
       if (
         estadoEmpresa.length > 0 &&
         !estadoEmpresa
@@ -105,8 +105,8 @@ export const CreacionDeTema = () => {
       ...state,
       sistRefe: [...state.sistRefe, e.target.value],
     });
-    if (sistRef.find((a) => a._id == e.target.value)) {
-      let agregar = sistRef.find((a) => a._id == e.target.value);
+    if (sistRef.find((a) => a.DescripSistema == e.target.value)) {
+      let agregar = sistRef.find((a) => a.DescripSistema == e.target.value);
       setestadoSistema([...estadoSistema, agregar]);
       if (estadoSistema.length == 0) {
         setestadoSistema([...estadoSistema, agregar]);
@@ -123,7 +123,7 @@ export const CreacionDeTema = () => {
 
   const handleDelete = (id) => {
     const deletPerfil = state.perfiles.filter((e) => e !== id);
-    const deletEstado = estadoperfil.filter((e) => e._id !== id);
+    const deletEstado = estadoperfil.filter((e) => e.id !== id);
     setState({
       ...state,
       perfiles: deletPerfil,
@@ -132,7 +132,7 @@ export const CreacionDeTema = () => {
   };
   const handleDeleteEmpresa = (id) => {
     const deletEmpresa = state.empresa.filter((e) => e !== id);
-    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e._id !== id);
+    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e.id !== id);
     setState({
       ...state,
       empresa: deletEmpresa,
@@ -142,7 +142,7 @@ export const CreacionDeTema = () => {
 
   const handleDeleteSistRef = (id) => {
     const deletSistRef = state.sistRefe.filter((e) => e !== id);
-    const deletEstadoSistR = estadoSistema.filter((e) => e._id !== id);
+    const deletEstadoSistR = estadoSistema.filter((e) => e.id !== id);
     setState({
       ...state,
       sistRefe: deletSistRef,
@@ -197,6 +197,7 @@ export const CreacionDeTema = () => {
     const name=e.target.files[0].name
     previewFile(file,type,name);
   };
+
   const postTema = async (base64EncodeFile) => {
     try {
           setLoad(true)
@@ -205,16 +206,17 @@ export const CreacionDeTema = () => {
       {
 
 
-        const todo=await axios.post("https://qworkapi.herokuapp.com/contenidos/", {
+        
+        const todo=await axios.post("http://localhost:3001/contenidos", {
           tituloTema: state.tituloTema,
           DescripTema: state.DescripTema,
           SolucionTema: state.SolucionTema,
-          idPerfiles: state.perfiles,
-          idSistemas: state.sistRefe,
+          perfile: state.perfiles,
+          sistema: state.sistRefe,
           idClasif: state.clasifTema,
-          author: user.fullName,
-          FileReferencia:  base64EncodeFile,
-          idEmpresa: state.empresa,
+          author: user.fullname,
+          FileReferencia:base64EncodeFile,
+          empresa: state.empresa,
           url:urla,
           date: new Date(),
         });
@@ -226,21 +228,22 @@ export const CreacionDeTema = () => {
             showConfirmButton: false,
             confirmButtonColor: "#347cc3",
           });
-          if (user.idPerfiles.DescripPerfil == "Administrador")
+          if (user.idPerfiles == "Administrador")
             navigate("/admin");
         }
+
       }
       else 
       {
-        const todo=await axios.post("https://qworkapi.herokuapp.com/contenidos/", {
+        const todo=await axios.post("http://localhost:3001/contenidos", {
           tituloTema: state.tituloTema,
           DescripTema: state.DescripTema,
           SolucionTema: state.SolucionTema,
-          idPerfiles: state.perfiles,
-          idSistemas: state.sistRefe,
+          perfile: state.perfiles,
+          sistema: state.sistRefe,
           idClasif: state.clasifTema,
-          author: user.fullName,
-          idEmpresa: state.empresa,
+          author: user.fullname,
+          empresa: state.empresa,
           url:urla,
           date: new Date(),
         });
@@ -252,10 +255,10 @@ export const CreacionDeTema = () => {
             showConfirmButton: false,
             confirmButtonColor: "#347cc3",
           });
-          if (user.idPerfiles.DescripPerfil == "Administrador")
+          if (user.idPerfiles == "Administrador")
             navigate("/admin");
         }
-      }
+       }
  
 
     
@@ -269,6 +272,7 @@ export const CreacionDeTema = () => {
     }
     setLoad(false)
 
+    
   };
 
   const handleOnclick = () => {
@@ -289,6 +293,7 @@ export const CreacionDeTema = () => {
   const url = (e) => {
     setUrl(e.target.value);
   };
+
   return (
     <div className={styles.todo}>
 
@@ -310,7 +315,7 @@ export const CreacionDeTema = () => {
                     
       <div className={styles.container}>
         
-      {user.idPerfiles.DescripPerfil !== "Redactor" ? (
+      {user.idPerfiles !== "Redactor" ? (
         <button onClick={handleOnclick}>
           <div className={styles.buttonVolver}>
           <TbArrowLeft size={20}></TbArrowLeft>
@@ -388,7 +393,7 @@ export const CreacionDeTema = () => {
                       </option>
                       {perfil &&
                         perfil.map((e) => (
-                          <option value={e._id} key={e._id}>
+                          <option value={e.DescripPerfil} key={e.id}>
                             {e.DescripPerfil}
                           </option>
                         ))}
@@ -396,10 +401,10 @@ export const CreacionDeTema = () => {
                     <div className={styles.added_perfiles}>
                       {estadoperfil.map((e) => (
                         <div>
-                          <p key={e._id}>
+                          <p key={e.id}>
                             {e.DescripPerfil}{" "}
                             <MdClose
-                              onClick={() => handleDelete(e._id)}
+                              onClick={() => handleDelete(e.id)}
                               className={styles.delete_added_tech}
                             />
                           </p>
@@ -425,7 +430,7 @@ export const CreacionDeTema = () => {
                       </option>
                       {sistRef &&
                         sistRef.map((e) => (
-                          <option value={e._id} key={e._id}>
+                          <option value={e.DescripSistema} key={e.id}>
                             {e.DescripSistema}
                           </option>
                         ))}
@@ -433,10 +438,10 @@ export const CreacionDeTema = () => {
                     <div className={styles.added_perfiles}>
                       {estadoSistema.map((e) => (
                         <div>
-                          <p key={e._id}>
+                          <p key={e.id}>
                             {e.DescripSistema}{" "}
                             <MdClose
-                              onClick={() => handleDeleteSistRef(e._id)}
+                              onClick={() => handleDeleteSistRef(e.DescripSistema)}
                               className={styles.delete_added_tech}
                             />{" "}
                           </p>
@@ -464,7 +469,7 @@ export const CreacionDeTema = () => {
                       </option>
                       {empresas &&
                         empresas.map((e) => (
-                          <option value={e._id} key={e._id}>
+                          <option value={e.DescripSistema} key={e.id}>
                             {e.DescripEmpresa}
                           </option>
                         ))}
@@ -472,10 +477,10 @@ export const CreacionDeTema = () => {
                     <div className={styles.added_perfiles}>
                       {estadoEmpresa.map((e) => (
                         <div>
-                          <p key={e._id}>
+                          <p key={e.id}>
                             {e.DescripEmpresa}
                             <MdClose
-                              onClick={() => handleDeleteEmpresa(e._id)}
+                              onClick={() => handleDeleteEmpresa(e.id)}
                               className={styles.delete_added_tech}
                             />
                           </p>
@@ -502,7 +507,7 @@ export const CreacionDeTema = () => {
                       </option>
                       {clasifTema &&
                         clasifTema.map((e) => (
-                          <option value={e._id} key={e._id}>
+                          <option value={e.DescripClasif} key={e.id}>
                             {e.DescripClasif}
                           </option>
                         ))}
@@ -550,7 +555,7 @@ export const CreacionDeTema = () => {
           </div>
         </form>
         <p>
-          Autor: <input disabled value={user.fullName}></input>
+          Autor: <input disabled value={user.fullname}></input>
         </p>
     
       </div>}

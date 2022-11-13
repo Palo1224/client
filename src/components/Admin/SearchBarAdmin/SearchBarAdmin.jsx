@@ -13,9 +13,9 @@ export const SearchBarAdmin = () => {
   const estado = JSON.parse(localStorage.getItem('estado'))
   const bussi = JSON.parse(localStorage.getItem("empresa"));
   const {user}=useSelector(state=>state.user)
-  let id=user?._id||null
+  let id=user?.id||null
    useEffect(()=>{
-      // dispatch(fetchTemas({search}))
+      dispatch(fetchTemas({search}))
    },[search])
   localStorage.setItem('search', JSON.stringify(search));
 
@@ -36,7 +36,7 @@ export const SearchBarAdmin = () => {
       else{
         setSearch(e.target.value);
 
-        // dispatch(fetchTemas({ search: e.target.value }));
+        dispatch(fetchTemas({ search: e.target.value }));
       }
       
 
@@ -53,7 +53,7 @@ export const SearchBarAdmin = () => {
       else{
         
         setSearch(e.target.value);
-        // dispatch(fetchUsers({ search: e.target.value,estado:estado,empresas:bussi }));
+        dispatch(fetchUsers({ search: e.target.value,estado:estado,empresas:bussi }));
       }
 
     }

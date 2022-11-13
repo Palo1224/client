@@ -11,7 +11,7 @@ const initialState = {
     activeCreacionEmpresa:null,
     eliminarContenido:null,
     activeLoadingArchivo:null,
-    _id:null,
+    id:null,
   
 }
 

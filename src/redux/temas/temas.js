@@ -10,54 +10,54 @@ export const fetchTemas=createAsyncThunk("temas/fetchTemas", async({search,id,re
       {
         if(search)
         {
-          const res= await axios.get(`https://qworkapi.herokuapp.com/contenidos?search=${search}&id=${id}`,)
+          const res= await axios.get(`http://localhost:3001/contenidos?search=${search}&id=${id}`,)
           return res.data
 
         }
         else if(search=="".toString())
         {
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos?id=${id}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}`,);
           return res.data
         }
         else if(ref)
         {
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos?id=${id}&ref=${ref}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}&ref=${ref}`,);
           return res.data
         }
         else if(empresa){
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos?id=${id}&empresa=${empresa}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}&empresa=${empresa}`,);
           return res.data
         }
         else
         {
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos?id=${id}`);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}`);
           return res.data
         }
       }
       else {
         if(search)
         {
-          const res= await axios.get(`https://qworkapi.herokuapp.com/contenidos?search=${search}`,)
+          const res= await axios.get(`http://localhost:3001/contenidos?search=${search}`,)
           return res.data
 
         }
         else if(search=="")
         {
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos`,);
+          const res=await axios.get(`http://localhost:3001/contenidos`,);
           return res.data
         }
         else if(ref)
         {
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos?ref=${ref}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?ref=${ref}`,);
           return res.data
         }
         else if(empresa){
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos?empresa=${empresa}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?empresa=${empresa}`,);
           return res.data
         }
         else
         {
-          const res=await axios.get(`https://qworkapi.herokuapp.com/contenidos`);
+          const res=await axios.get(`http://localhost:3001/contenidos`);
           return res.data
         }
       }
@@ -68,10 +68,10 @@ export const fetchTemas=createAsyncThunk("temas/fetchTemas", async({search,id,re
     } 
 }) 
 
-export const fetchTema=createAsyncThunk("tema/fetchTema", async(_id)=>{
+export const fetchTema=createAsyncThunk("tema/fetchTema", async(id)=>{
     try {
         
-        const res= await axios.get(`https://qworkapi.herokuapp.com/contenidos/${_id}`)
+        const res= await axios.get(`http://localhost:3001/contenidos/${id}`)
 
 
         return  res.data

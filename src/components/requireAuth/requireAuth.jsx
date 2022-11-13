@@ -7,7 +7,7 @@ export const RequireAuth = ({allowedRoles}) => {
 const {user}=useSelector(state=>state.user)
 
   return (
-    user.filter(e=>e._id===allowedRoles)    ?
+    user.filter(e=>e.id===allowedRoles)    ?
     <Outlet/>
     :
     <Navigate to="/"/>

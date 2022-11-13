@@ -28,7 +28,7 @@ export const LoginRedactor = () => {
   const loginUserAdmin = async () => {
     try {
       const res = await axios.post(
-        "https://qworkapi.herokuapp.com/signin/redactor",
+        "http://localhost:3001/signin/redactor",
         formValues
       );
 

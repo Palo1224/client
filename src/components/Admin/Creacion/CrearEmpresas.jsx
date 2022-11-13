@@ -20,7 +20,7 @@ export const CrearEmpresas = () => {
   const postPerfil =  async()=>{
 
     try {
-      const res= await axios.post("https://qworkapi.herokuapp.com/empresa",{DescripEmpresa})
+      const res= await axios.post("http://localhost:3001/empresa",{DescripEmpresa})
       if(res.data)
       {
 

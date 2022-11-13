@@ -15,7 +15,7 @@ export const CrearUsuario = () => {
   const [estadoSistema, setestadoSistema] = useState([]);
   const [estadoEmpresa, setestadoEmpresa] = useState([]);
   const [state, setState] = useState({
-    fullName: "",
+    fullname: "",
     email: "",
     password: "",
     usuario: "",
@@ -51,8 +51,8 @@ export const CrearUsuario = () => {
       ...state,
       empresas: [...state.empresas, e.target.value],
     });
-    if (empresas.find((a) => a._id == e.target.value)) {
-      let agregar = empresas.find((a) => a._id == e.target.value);
+    if (empresas.find((a) => a.id == e.target.value)) {
+      let agregar = empresas.find((a) => a.id == e.target.value);
       setestadoEmpresa([...estadoEmpresa, agregar]);
  
     }
@@ -63,8 +63,8 @@ export const CrearUsuario = () => {
       ...state,
       sistRefe: [...state.sistRefe, e.target.value],
     });
-    if (sistRef.find((a) => a._id == e.target.value)) {
-      let agregar = sistRef.find((a) => a._id == e.target.value);
+    if (sistRef.find((a) => a.id == e.target.value)) {
+      let agregar = sistRef.find((a) => a.id == e.target.value);
       setestadoSistema([...estadoSistema, agregar]);
       if (estadoSistema.length == 0) {
         setestadoSistema([...estadoSistema, agregar]);
@@ -75,7 +75,7 @@ export const CrearUsuario = () => {
   };
   const handleDeleteSistRef = (id) => {
     const deletSistRef = state.sistRefe.filter((e) => e !== id);
-    const deletEstadoSistR = estadoSistema.filter((e) => e._id !== id);
+    const deletEstadoSistR = estadoSistema.filter((e) => e.id !== id);
     setState({
       ...state,
       sistRefe: deletSistRef,
@@ -84,7 +84,7 @@ export const CrearUsuario = () => {
   };
   const handleDeleteEmpresa = (id) => {
     const deletEmpresa = state.empresas.filter((e) => e !== id);
-    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e._id !== id);
+    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e.id !== id);
     setState({
       ...state,
       empresas: deletEmpresa,
@@ -104,9 +104,9 @@ export const CrearUsuario = () => {
   const handleChange = (event) => {
     if (Object.entries(error).length === 0) state.validate = true;
 
-    !state.fullName
-      ? (error.fullName = "Ingrese un nombre!")
-      : delete error.fullName;
+    !state.fullname
+      ? (error.fullname = "Ingrese un nombre!")
+      : delete error.fullname;
     !state.usuario
       ? (error.usuario = "Ingrese un usuario!")
       : delete error.usuario;
@@ -136,24 +136,24 @@ export const CrearUsuario = () => {
 
   const postUsuario = async () => {
     try {
-      const res = await axios.post("https://qworkapi.herokuapp.com/users", {
-        fullName: state.fullName,
-        usuario: state.usuario,
+      const res = await axios.post("http://localhost:3001/users", {
+        fullname: state.fullname,
+        usuar: state.usuario,
         email: state.email,
         password: state.password,
         idPerfiles: state.perfiles,
         idSistemas: state.sistRefe,
-        idEmpresa: state.empresas,
+        idEmpresas: state.empresas,
         active: true,
         // Date:new Date( new Date().getTime() -  ( new Date().getTimezoneOffset() * 60000 ) )
       });
-      if (res.data.active) {
+      if (res.data) {
         Swal.fire({
           icon: "success",
           title: "Se creó correctamente!",
           showConfirmButton: true,
         });
-        user.idPerfiles.DescripPerfil=="Administrador"? navigate("/admin"):navigate("/crearUsuario")
+        user.idPerfiles=="Administrador"? navigate("/admin"):navigate("/crearUsuario")
       } else {
         Swal.fire({
           icon: "error",
@@ -220,13 +220,13 @@ export const CrearUsuario = () => {
                   <input
                     type="text"
                     onChange={handleChange}
-                    name="fullName"
-                    value={state.fullName}
+                    name="fullname"
+                    value={state.fullname}
                   ></input>
                 </div>
 
-                {error.fullName && (
-                  <span className={styles.error}>{error.fullName}</span>
+                {error.fullname && (
+                  <span className={styles.error}>{error.fullname}</span>
                 )}
                 <label>Mail</label>
                 <div>
@@ -268,7 +268,7 @@ export const CrearUsuario = () => {
                     </option>
                     {perfil &&
                       perfil.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.DescripPerfil} key={e.id}>
                           {e.DescripPerfil}
                         </option>
                       ))}
@@ -292,18 +292,18 @@ export const CrearUsuario = () => {
                     </option>
                     {sistRef &&
                       sistRef.map((e) => (
-                        <option value={e._id} key={e._id}>
+                        <option value={e.DescripSistema} key={e.id}>
                           {e.DescripSistema}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoSistema.map((e) => (
-                      <div  key={e._id}>
+                      <div  key={e.id}>
                         <p>
                           {e.DescripSistema}{" "}
                           <MdClose
-                            onClick={() => handleDeleteSistRef(e._id)}
+                            onClick={() => handleDeleteSistRef(e.id)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -330,18 +330,18 @@ export const CrearUsuario = () => {
                       </option>
                       {empresas &&
                         empresas.map((e) => (
-                          <option value={e._id} key={e._id}>
+                          <option value={e.DescripEmpresa} key={e.id}>
                             {e.DescripEmpresa}
                           </option>
                         ))}
                     </select>
                     <div className={styles.added_perfiles}>
                       {estadoEmpresa.map((e) => (
-                        <div  key={e._id}>
+                        <div  key={e.id}>
                           <p>
                             {e.DescripEmpresa}
                             <MdClose
-                              onClick={() => handleDeleteEmpresa(e._id)}
+                              onClick={() => handleDeleteEmpresa(e.id)}
                               className={styles.delete_added_tech}
                             />
                           </p>

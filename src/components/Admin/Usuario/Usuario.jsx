@@ -32,10 +32,10 @@ export const Usuario = () => {
   localStorage.setItem("estado", JSON.stringify(state));
   localStorage.setItem("empresa", JSON.stringify(business));
 
-  const handleToggleButton = async (_id) => {
+  const handleToggleButton = async (id) => {
     try {
       await axios.delete(
-        `https://qworkapi.herokuapp.com/users/${_id}`
+        `http://localhost:3001/users/${id}`
       );
 
       dispatch(
@@ -74,6 +74,7 @@ export const Usuario = () => {
     <div className={styles.container}>
       <div>
         <h2>Usuarios</h2>
+
       </div>
       <Link to={`/admin/crearUsuario`}>
         <button className={styles.button}>
@@ -108,7 +109,7 @@ export const Usuario = () => {
               <option value="">Ningunos</option>
               {empresas &&
                 empresas.map((e) => (
-                  <option value={e.DescripEmpresa} key={e._id}>
+                  <option value={e} key={e.id}>
                     {e.DescripEmpresa}
                   </option>
                 ))}
@@ -134,29 +135,31 @@ export const Usuario = () => {
             <th>Status</th>
             <th></th>
             <th></th>
+
           </tr>
         </thead>
         <tbody>
-          {users && users?.length !== 0 ? (
+          {users ? (
             users.map((usuario, i) =>
-              user._id !== usuario._id ? (
+              user.id !== usuario.id ? (
                 <tr key={i}>
-                  {/* <td>{user.usuario}</td> */}
 
-                  <td>{usuario.fullName}</td>
+                  {/* <td>{usuario.usuar}</td>  */}
+
+                   <td>{usuario.fullname}</td> 
 
                   <td>{usuario.email}</td>
 
-                  <td>{usuario.idPerfiles.DescripPerfil}</td>
+                  <td>{usuario.idPerfiles}</td>
                   <td>
                     {usuario.idSistemas?.map((e) => (
-                      <p key={e._id}> - {e.DescripSistema}</p>
+                      <p > - {e}</p>
                     ))}
                   </td>
 
                   <td>
-                    {usuario.idEmpresa?.map((r) => (
-                      <p key={r._id}> - {r.DescripEmpresa}</p>
+                    {usuario.idEmpresas?.map((r) => (
+                      <p > - {r}</p>
                     ))}
                   </td>
 
@@ -166,7 +169,7 @@ export const Usuario = () => {
                     <td>
                       <FaWindowClose
                         className={styles.disable_button}
-                        onClick={() => handleToggleButton(usuario._id)}
+                        onClick={() => handleToggleButton(usuario.id)}
                         title="Desactivar"
                       />
                     </td>
@@ -174,14 +177,14 @@ export const Usuario = () => {
                     <td>
                       <MdDoneOutline
                         className={styles.enable_button}
-                        onClick={() => handleToggleButton(usuario._id)}
+                        onClick={() => handleToggleButton(usuario.id)}
                         title="Activar"
                       />
                     </td>
                   )}
 
-                  <td key={usuario._id}>
-                    <Link to={`/admin/EditUsuario/${usuario._id}`}>
+                  <td key={usuario.id}>
+                    <Link to={`/admin/EditUsuario/${usuario.id}`}>
                       <MdCreate />{" "}
                     </Link>
                   </td>

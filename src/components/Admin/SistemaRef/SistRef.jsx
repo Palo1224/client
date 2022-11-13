@@ -15,7 +15,7 @@ export const SistRef = () => {
   }, [dispatch]);
 
 
-  const handleDelete = async (_id) => {
+  const handleDelete = async (id) => {
     try {
 
       Swal.fire({
@@ -29,12 +29,12 @@ export const SistRef = () => {
         cancelButtonText:"No"
       }).then((result) => {
         if (result.isConfirmed) {
-          handle(_id);
+          handle(id);
         }
       });
-      const handle = async (_id) => {
+      const handle = async (id) => {
         await axios.delete(
-          `https://qworkapi.herokuapp.com/sistRef/${_id}`
+          `http://localhost:3001/sistRef/${id}`
         );
 
    
@@ -92,7 +92,7 @@ export const SistRef = () => {
             <td>
             <FaWindowClose
                     className={styles.disable_button}
-                    onClick={() => handleDelete(sistRef._id)}
+                    onClick={() => handleDelete(sistRef.id)}
                     title="Eliminar"
                   />
             </td>
