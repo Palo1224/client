@@ -216,7 +216,7 @@ const postTema = async (base64EncodeFile,id) => {
 
    
         const temaM=await axios.put(
-          `http://localhost:3001/contenidos/${id}`,
+          `https://qworkbaseback.up.railway.app/contenidos/${id}`,
           {
             tituloTema: state.tituloTema,
             DescripTema: state.DescripTema,
@@ -252,7 +252,7 @@ const postTema = async (base64EncodeFile,id) => {
       }
       else{
         const temaM=await axios.put(
-          `http://localhost:3001/contenidos/${id}`,
+          `https://qworkbaseback.up.railway.app/contenidos/${id}`,
           {
             tituloTema: state.tituloTema,
             DescripTema: state.DescripTema,

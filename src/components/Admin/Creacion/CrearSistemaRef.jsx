@@ -22,7 +22,7 @@ export const CrearSistemaRef = () => {
   const postSistRef =  async()=>{
 
     try {
-      const res= await axios.post("http://localhost:3001/sistRef",{DescripSistema})
+      const res= await axios.post("https://qworkbaseback.up.railway.app/sistRef",{DescripSistema})
       if(res.data)
       {
 

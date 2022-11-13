@@ -20,7 +20,7 @@ export const CrearEmpresas = () => {
   const postPerfil =  async()=>{
 
     try {
-      const res= await axios.post("http://localhost:3001/empresa",{DescripEmpresa})
+      const res= await axios.post("https://qworkbaseback.up.railway.app/empresa",{DescripEmpresa})
       if(res.data)
       {
 

@@ -37,7 +37,7 @@ export const Empresas = () => {
       });
       const handle = async (id) => {
        await axios.delete(
-          `http://localhost:3001/empresa/${id}`
+          `https://qworkbaseback.up.railway.app/empresa/${id}`
         );
 
    

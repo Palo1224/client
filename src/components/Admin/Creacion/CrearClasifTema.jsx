@@ -17,7 +17,7 @@ export const CrearClasifTema = () => {
   const postClasifTema = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3001/clasifTema",
+        "https://qworkbaseback.up.railway.app/clasifTema",
         { DescripClasif }
       );
       if (res.data) {

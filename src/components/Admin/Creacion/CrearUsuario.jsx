@@ -136,7 +136,7 @@ export const CrearUsuario = () => {
 
   const postUsuario = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/users", {
+      const res = await axios.post("https://qworkbaseback.up.railway.app/users", {
         fullname: state.fullname,
         usuar: state.usuario,
         email: state.email,

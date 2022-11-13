@@ -169,7 +169,7 @@ export const EditUsuario = () => {
   const postUsuario = async (id) => {
 
       try {
-        const res = await axios.put(`http://localhost:3001/users/${id}`, {
+        const res = await axios.put(`https://qworkbaseback.up.railway.app/users/${id}`, {
           fullname: state.fullname,
           usuar: state.usuario,
           email: state.email,

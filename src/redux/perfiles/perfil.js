@@ -6,7 +6,7 @@ export const fetchPerfil=createAsyncThunk('perfil/fetchPerfil',
 
 async()=>{
         try {
-            const res=await axios.get(`http://localhost:3001/perfiles`)
+            const res=await axios.get(`https://qworkbaseback.up.railway.app/perfiles`)
             return res.data;
         } catch (error) {
             console.log(error)

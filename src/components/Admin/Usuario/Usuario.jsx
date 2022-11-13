@@ -35,7 +35,7 @@ export const Usuario = () => {
   const handleToggleButton = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:3001/users/${id}`
+        `https://qworkbaseback.up.railway.app/users/${id}`
       );
 
       dispatch(

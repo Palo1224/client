@@ -28,7 +28,7 @@ export const LoginAdmin = () => {
   const loginUserAdmin = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3001/signin/admin",
+        "https://qworkbaseback.up.railway.app/signin/admin",
         formValues
       );
 

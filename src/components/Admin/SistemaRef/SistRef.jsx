@@ -34,7 +34,7 @@ export const SistRef = () => {
       });
       const handle = async (id) => {
         await axios.delete(
-          `http://localhost:3001/sistRef/${id}`
+          `https://qworkbaseback.up.railway.app/sistRef/${id}`
         );
 
    
