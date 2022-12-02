@@ -6,7 +6,7 @@ import { Auth } from "../auth/Auth";
 import { fetchUsers } from "../../redux/user/users";
 import { FaUsers ,FaUserTie,} from 'react-icons/fa'
 import {IoBusinessSharp} from "react-icons/io5"
-import {RiAdminLine,RiFolderSettingsFill} from "react-icons/ri"
+import {RiAdminFill,RiFolderSettingsFill} from "react-icons/ri"
 import { Usuario } from "./Usuario/Usuario";
 import { ClasifTema } from "./ClasificacionTema/ClasifTema";
 import { SistRef } from "./SistemaRef/SistRef";
@@ -51,7 +51,7 @@ export const Admin = () => {
         <li className={styles.side_bar_item}onClick={ () => setSelectOption("Empresas")&&  localStorage.setItem('search', JSON.stringify("")) &&   localStorage.setItem('estado', JSON.stringify("")) &&   localStorage.setItem('empresa', JSON.stringify(""))}><IoBusinessSharp/><span>Empresas</span></li>
         <li className={styles.side_bar_item} onClick={ () => setSelectOption("Perfiles")&&  localStorage.setItem('search', JSON.stringify("")) &&   localStorage.setItem('estado', JSON.stringify("")) &&   localStorage.setItem('empresa', JSON.stringify(""))}> <FaUserTie/><span>Perfiles
           </span></li>
-        <li className={styles.side_bar_item}  onClick={ () => setSelectOption("Sistema de Referencia") &&  localStorage.setItem('search', JSON.stringify("")) &&   localStorage.setItem('estado', JSON.stringify("")) &&   localStorage.setItem('empresa', JSON.stringify(""))}> <RiAdminLine/><span>Sistemas de Referencias</span></li>
+        <li className={styles.side_bar_item}  onClick={ () => setSelectOption("Sistema de Referencia") &&  localStorage.setItem('search', JSON.stringify("")) &&   localStorage.setItem('estado', JSON.stringify("")) &&   localStorage.setItem('empresa', JSON.stringify(""))}> <RiAdminFill/><p>Sistemas de Referencias</p></li>
         <li  className={styles.side_bar_item} onClick={ () => setSelectOption("Usuarios")&&  localStorage.setItem('search', JSON.stringify("")) &&   localStorage.setItem('estado', JSON.stringify("")) &&   localStorage.setItem('empresa', JSON.stringify(""))}> <FaUsers/><span>Usuarios
           </span></li>
 

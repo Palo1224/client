@@ -37,7 +37,7 @@ export const Perfil = () => {
       });
       const handle = async (id) => {
         await axios.delete(
-          `https://qworkbaseback.up.railway.app/perfiles/${id}`
+          `http://localhost:3001/perfiles/${id}`
         );
 
    

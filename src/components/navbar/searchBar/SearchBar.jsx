@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchTemas } from "../../../redux/temas/temas";
+import { fetchTemas } from "../../../redux/temas/temas";
 import styles from "./searchbar.module.scss";
 import { CgSearch } from "react-icons/cg";
 export const SearchBar = () => {
@@ -16,7 +16,7 @@ export const SearchBar = () => {
     e.preventDefault();
 
     if (e.target.value == "") {
-      // dispatch(fetchTemas({ search: "", id }));
+      dispatch(fetchTemas({ search: "", id }));
       setSearch("");
     } else {
       setSearch(e.target.value);
@@ -26,13 +26,13 @@ export const SearchBar = () => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      // dispatch(fetchTemas({ search, id }));
+      dispatch(fetchTemas({ search, id }));
     }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
-    // dispatch(fetchTemas({ search, id }));
+    dispatch(fetchTemas({ search, id }));
   };
   return (
     <div className={styles.container}>

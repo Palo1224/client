@@ -35,7 +35,7 @@ export const Usuario = () => {
   const handleToggleButton = async (id) => {
     try {
       await axios.delete(
-        `https://qworkbaseback.up.railway.app/users/${id}`
+        `http://localhost:3001/users/${id}`
       );
 
       dispatch(
@@ -109,7 +109,7 @@ export const Usuario = () => {
               <option value="">Ningunos</option>
               {empresas &&
                 empresas.map((e) => (
-                  <option value={e} key={e.id}>
+                  <option value={e.DescripEmpresa} key={e.id}>
                     {e.DescripEmpresa}
                   </option>
                 ))}

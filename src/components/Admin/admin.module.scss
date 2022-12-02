@@ -46,13 +46,22 @@
 
 
 .side_bar_item{
-    cursor: pointer;
+    // cursor: pointer;
+    // display: flex;
+    // font-size: 15px;
+    // gap: 15px;
+    // align-items: center;
+    // padding: 2px 5px;
+    // color: white;
+    
+            cursor: pointer;
     display: flex;
-    font-size: 15px;
-    gap: 15px;
-    align-items: center;
-    padding: 2px 5px;
-    color: white;
+        text-align: start;
+       font-size: 15px;
+            gap: 15px;
+
+
+    
 }
 
 .side_bar_item:hover{

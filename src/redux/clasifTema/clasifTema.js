@@ -6,7 +6,7 @@ export const fetchClasifTema=createAsyncThunk('clasifTema/fetchClasifTema',
 
 async()=>{
         try {
-            const res=await axios.get(`https://qworkbaseback.up.railway.app/clasifTema`)
+            const res=await axios.get(`http://localhost:3001/clasifTema`)
             return res.data;
         } catch (error) {
             console.log(error)

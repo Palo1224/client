@@ -207,7 +207,7 @@ export const CreacionDeTema = () => {
 
 
         
-        const todo=await axios.post("https://qworkbaseback.up.railway.app/contenidos", {
+        const todo=await axios.post("http://localhost:3001/contenidos", {
           tituloTema: state.tituloTema,
           DescripTema: state.DescripTema,
           SolucionTema: state.SolucionTema,
@@ -235,7 +235,7 @@ export const CreacionDeTema = () => {
       }
       else 
       {
-        const todo=await axios.post("https://qworkbaseback.up.railway.app/contenidos", {
+        const todo=await axios.post("http://localhost:3001/contenidos", {
           tituloTema: state.tituloTema,
           DescripTema: state.DescripTema,
           SolucionTema: state.SolucionTema,

@@ -51,11 +51,22 @@ const {empresas}=useSelector(state=>state.empresas)
   };
   const handleSelectEmpresa = (e) => {
     setEmpresa(e.target.value);
+
+    if (id !== null) {
     dispatch(
       fetchTemas({
-        empresa: e.target.value,
+        empresa: e.target.value,id
       })
     );
+    }
+    else 
+    {
+      dispatch(
+        fetchTemas({
+          empresa: e.target.value
+        })
+      );
+    }
   };
   return (
     <div className={styles.filterbar}>
@@ -81,7 +92,6 @@ const {empresas}=useSelector(state=>state.empresas)
         </div>
       </div>
       <div>
-
         {id ?
         user?.idPerfiles=="Administrador" && user?.idEmpresas ? (
     
@@ -95,7 +105,8 @@ const {empresas}=useSelector(state=>state.empresas)
           >
             <option disabled value="">Empresas</option>
   
-            
+            <option value="Ningunos">Ningunos</option>
+
        {empresas &&
             empresas.map((e) => (
                 <option value={e.DescripEmpresa} key={e.id}>
@@ -123,7 +134,8 @@ const {empresas}=useSelector(state=>state.empresas)
         >
           <option disabled value="">Empresas</option>
 
-          
+          <option value="Ningunos">Ningunos</option>
+
      {user?.idEmpresas &&
           user.idEmpresas.map((e) => (
               <option value={e} key={e}>
@@ -138,7 +150,34 @@ const {empresas}=useSelector(state=>state.empresas)
       </div> 
 
       </div> 
-        :  null }
+        :  
+        <div className={styles.inputref}>
+        <p>Empresas</p>
+        <div>
+        <select
+          className={styles.form_select}
+          value={empresa}
+          onChange={handleSelectEmpresa}
+        >
+          <option disabled value="">Empresas</option>
+
+          <option value="Ningunos">Ningunos</option>
+
+     {empresas &&
+          empresas.map((e) => (
+              <option value={e.DescripEmpresa} key={e.id}>
+                {e.DescripEmpresa}
+              </option>
+            ))}
+        </select>
+
+        <button title="Refrescar" onClick={handleDeleteEmpresa}>
+        <></>
+        <BiRefresh size={14} />
+      </button>
+      </div>
+
+      </div> }
       </div>
     </div>
   );

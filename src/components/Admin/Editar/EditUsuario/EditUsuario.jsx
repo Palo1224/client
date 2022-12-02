@@ -65,12 +65,12 @@ export const EditUsuario = () => {
         estadoEmpresa.length > 0 &&
         !estadoEmpresa
           ?.map((el) => el)
-          .includes(agregarempresa)
+          .includes(agregarempresa.DescripEmpresa)
       ) {
-        setestadoEmpresa([...estadoEmpresa, agregarempresa]);
+        setestadoEmpresa([...estadoEmpresa, agregarempresa.DescripEmpresa]);
       }
       if (estadoEmpresa.length == 0) {
-        setestadoEmpresa([...estadoEmpresa, agregarempresa]);
+        setestadoEmpresa([...estadoEmpresa, agregarempresa.DescripEmpresa]);
       }
       
     }
@@ -89,12 +89,12 @@ export const EditUsuario = () => {
         estadoSistema.length > 0 &&
         !estadoSistema
           ?.map((el) => el)
-          .includes(agregar)
+          .includes(agregar.DescripSistema)
       ) {
-        setestadoSistema([...estadoSistema, agregar]);
+        setestadoSistema([...estadoSistema, agregar.DescripSistema]);
       }
       if (estadoSistema.length == 0) {
-        setestadoSistema([...estadoSistema, agregar]);
+        setestadoSistema([...estadoSistema, agregar.DescripSistema]);
       }
       
     }
@@ -105,7 +105,7 @@ export const EditUsuario = () => {
   }
   const handleDeleteSistRef = (id) => {
     const deletSistRef = state.sistRefe.filter((e) => e !== id);
-    const deletEstadoSistR = estadoSistema.filter((e) => e.id !== id);
+    const deletEstadoSistR = estadoSistema.filter((e) => e !== id);
     setState({
       ...state,
       sistRefe: deletSistRef,
@@ -114,7 +114,7 @@ export const EditUsuario = () => {
   };
   const handleDeleteEmpresa = (id) => {
     const deletEmpresa = state.empresas.filter((e) => e !== id);
-    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e.id !== id);
+    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e !== id);
     setState({
       ...state,
       empresas: deletEmpresa,
@@ -169,7 +169,7 @@ export const EditUsuario = () => {
   const postUsuario = async (id) => {
 
       try {
-        const res = await axios.put(`https://qworkbaseback.up.railway.app/users/${id}`, {
+        const res = await axios.put(`http://localhost:3001/users/${id}`, {
           fullname: state.fullname,
           usuar: state.usuario,
           email: state.email,
@@ -302,6 +302,8 @@ export const EditUsuario = () => {
 
                   <p>{state.perfiles}</p>
                   </div>:null}
+
+                
                   
                   {error.perfiles ? (
                     <span className={styles.error}>{error.perfiles}</span>
@@ -332,7 +334,7 @@ export const EditUsuario = () => {
                         <p>
                           {e}{" "}
                           <MdClose
-                            onClick={() => handleDeleteSistRef(e.id)}
+                            onClick={() => handleDeleteSistRef(e)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -370,7 +372,7 @@ export const EditUsuario = () => {
                           <p>
                             {e}
                             <MdClose
-                              onClick={() => handleDeleteEmpresa(e.id)}
+                              onClick={() => handleDeleteEmpresa(e)}
                               className={styles.delete_added_tech}
                             />
                           </p>

@@ -52,41 +52,43 @@ const [load,setLoad]=useState(false)
     ...state,
     perfiles: [...state.perfiles, e.target.value],
   });
-  if (perfil.find((a) => a.id == e.target.value)) {
-    let agregar = perfil.find((a) => a.id == e.target.value);
+  if (perfil.find((a) => a.DescripPerfil == e.target.value)) {
+    let agregar = perfil.find((a) => a.DescripPerfil == e.target.value);
 
     if (
       estadoperfil.length > 0 &&
       !estadoperfil
-        ?.map((el) => el.DescripPerfil)
+        ?.map((el) => el)
         .includes(agregar.DescripPerfil)
     ) {
-      setestadoperfil([...estadoperfil, agregar]);
+      setestadoperfil([...estadoperfil, agregar.DescripPerfil]);
     }
     if (estadoperfil.length == 0) {
-      setestadoperfil([...estadoperfil, agregar]);
+      setestadoperfil([...estadoperfil, agregar.DescripPerfil]);
     }
   }
 
   delete error.perfiles;
 };
 const handleEmpresas = (e) => {
+
   setState({
     ...state,
     empresa: [...state.empresa, e.target.value],
   });
-  if (empresas.find((a) => a.id == e.target.value)) {
-    let agregarempresa = empresas.find((a) => a.id == e.target.value);
+  if (empresas.find((a) => a.DescripEmpresa == e.target.value)) {
+    let agregarempresa = empresas.find((a) => a.DescripEmpresa ==  e.target.value);
+    console.log(agregarempresa)
     if (
       estadoEmpresa.length > 0 &&
       !estadoEmpresa
-        ?.map((el) => el.DescripEmpresa)
+        ?.map((el) => el)
         .includes(agregarempresa.DescripEmpresa)
     ) {
-      setestadoEmpresa([...estadoEmpresa, agregarempresa]);
+      setestadoEmpresa([...estadoEmpresa, agregarempresa.DescripEmpresa]);
     }
     if (estadoEmpresa.length == 0) {
-      setestadoEmpresa([...estadoEmpresa, agregarempresa]);
+      setestadoEmpresa([...estadoEmpresa, agregarempresa.DescripEmpresa]);
     }
     
   }
@@ -98,18 +100,20 @@ const ClickCheckedSistemaRef = (e) => {
     ...state,
     sistRefe: [...state.sistRefe, e.target.value],
   });
-  if (sistRef.find((a) => a.id == e.target.value)) {
-    let agregar = sistRef.find((a) => a.id == e.target.value);
+  if (sistRef.find((a) => a.DescripSistema == e.target.value)) {
+    let agregar = sistRef.find((a) => a.DescripSistema == e.target.value);
+    console.log(agregar)
+
     if (
       estadoSistema.length > 0 &&
       !estadoSistema
-        ?.map((el) => el.DescripSistema)
+        ?.map((el) => el)
         .includes(agregar.DescripSistema)
     ) {
-      setestadoSistema([...estadoSistema, agregar]);
+      setestadoSistema([...estadoSistema, agregar.DescripSistema]);
     }
     if (estadoSistema.length == 0) {
-      setestadoSistema([...estadoSistema, agregar]);
+      setestadoSistema([...estadoSistema, agregar.DescripSistema]);
     }
     
   }
@@ -124,7 +128,7 @@ const handleSelect = (e) => {
 
 const handleDelete = (id) => {
   const deletPerfil = state.perfiles.filter((e) => e !== id);
-  const deletEstado = estadoperfil.filter((e) => e.id !== id);
+  const deletEstado = estadoperfil.filter((e) => e !== id);
   setState({
     ...state,
     perfiles: deletPerfil,
@@ -133,7 +137,7 @@ const handleDelete = (id) => {
 };
 const handleDeleteEmpresa = (id) => {
   const deletEmpresa = state.empresa.filter((e) => e !== id);
-  const deletEstadoEmpresas = estadoEmpresa.filter((e) => e.id !== id);
+  const deletEstadoEmpresas = estadoEmpresa.filter((e) => e !== id);
   setState({
     ...state,
     empresa: deletEmpresa,
@@ -143,7 +147,7 @@ const handleDeleteEmpresa = (id) => {
 
 const handleDeleteSistRef = (id) => {
   const deletSistRef = state.sistRefe.filter((e) => e !== id);
-  const deletEstadoSistR = estadoSistema.filter((e) => e.id !== id);
+  const deletEstadoSistR = estadoSistema.filter((e) => e !== id);
   setState({
     ...state,
     sistRefe: deletSistRef,
@@ -158,7 +162,7 @@ useEffect(() => {
 
 
 }, [dispatch]);
-
+ console.log(estadoEmpresa)
 const handleChange = (event) => {
   !state.tituloTema
     ? (error.tituloTema = "Ingrese un título!")
@@ -216,7 +220,7 @@ const postTema = async (base64EncodeFile,id) => {
 
    
         const temaM=await axios.put(
-          `https://qworkbaseback.up.railway.app/contenidos/${id}`,
+          `http://localhost:3001/contenidos/${id}`,
           {
             tituloTema: state.tituloTema,
             DescripTema: state.DescripTema,
@@ -226,7 +230,7 @@ const postTema = async (base64EncodeFile,id) => {
             idClasif: state.clasifTema,
             author: user.fullname,
             FileReferencia: base64EncodeFile,
-            idEmpresa: estadoEmpresa,
+            idEmpresas: estadoEmpresa,
             url: urla,
             date: new Date(),
           }
@@ -252,7 +256,7 @@ const postTema = async (base64EncodeFile,id) => {
       }
       else{
         const temaM=await axios.put(
-          `https://qworkbaseback.up.railway.app/contenidos/${id}`,
+          `http://localhost:3001/contenidos/${id}`,
           {
             tituloTema: state.tituloTema,
             DescripTema: state.DescripTema,
@@ -262,7 +266,7 @@ const postTema = async (base64EncodeFile,id) => {
             idClasif: state.clasifTema,
             author: user.fullname,
             FileReferencia: previewSource,
-            idEmpresa: estadoEmpresa,
+            idEmpresas: estadoEmpresa,
             url: urla,
             date: new Date(),
           }
@@ -405,18 +409,18 @@ return (
                     </option>
                     {perfil &&
                       perfil?.map((e) => (
-                        <option value={e.id} key={e.id}>
+                        <option value={e.DescripPerfil} key={e.id}>
                           {e.DescripPerfil}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoperfil?.map((e) => (
-                      <div key={e.id}> 
+                      <div key={e}> 
                         <p>
-                          {e.DescripPerfil}{" "}
+                          {e}{" "}
                           <MdClose
-                            onClick={() => handleDelete(e.id)}
+                            onClick={() => handleDelete(e)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -442,18 +446,18 @@ return (
                     </option>
                     {sistRef &&
                       sistRef?.map((e) => (
-                        <option value={e.id} key={e.id}>
+                        <option value={e.DescripSistema} key={e.id}>
                           {e.DescripSistema}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoSistema?.map((e) => (
-                      <div key={e.id}>
+                      <div key={e}>
                         <p>
-                          {e.DescripSistema}{" "}
+                          {e}{" "}
                           <MdClose
-                            onClick={() => handleDeleteSistRef(e.id)}
+                            onClick={() => handleDeleteSistRef(e)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -481,18 +485,18 @@ return (
                     </option>
                     {empresas &&
                       empresas?.map((e) => (
-                        <option value={e.id} key={e.id}>
+                        <option value={e.DescripEmpresa} key={e.id}>
                           {e.DescripEmpresa}
                         </option>
                       ))}
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoEmpresa?.map((e) => (
-                      <div key={e.id}>
+                      <div key={e}>
                         <p>
-                          {e.DescripEmpresa}
+                          {e}
                           <MdClose
-                            onClick={() => handleDeleteEmpresa(e.id)}
+                            onClick={() => handleDeleteEmpresa(e)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -519,16 +523,16 @@ return (
                     </option>
                     {clasifTema &&
                       clasifTema?.map((e) => (
-                        <option value={e.id} key={e.id}>
+                        <option value={e.DescripClasif} key={e.id}>
                           {e.DescripClasif}
                         </option>
                       ))}
                   </select>
                   <br></br>
-                  {state.clasifTema?.DescripClasif ?
+                  {state.clasifTema ?
                   <div className={styles.added_perfiles}>
 
-                  <p>{state.clasifTema?.DescripClasif}</p>
+                  <p>{state.clasifTema}</p>
                   </div>:null}
                   {error.clasifTema ? (
                     <span className={styles.error}>{error.clasifTema}</span>

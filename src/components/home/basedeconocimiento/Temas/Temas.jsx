@@ -4,6 +4,8 @@ import { NotFound } from "../../../../not_found/NotFound";
 import { fetchTemas } from "../../../../redux/temas/temas";
 import { Tema } from "../Tema/Tema";
 import styles from "./temas.module.scss";
+import sty from "../Tema/tema.module.scss";
+
 import Loading from "../../Loading/Loading"
 export const Temas = () => {
   let { temas } = useSelector((state) => state.temas);
@@ -17,7 +19,8 @@ export const Temas = () => {
   return (
     <div className={styles.cards}>
       <div>
-       { temas ?
+        {console.log(temas)}
+       { temas && temas!=="No hay informacion" ?
         temas.length > 0 ? (
           temas.map((e) => {
             return (
@@ -44,9 +47,18 @@ export const Temas = () => {
           </div>
         )
         : 
-          <div>
-            <NotFound></NotFound>
+          temas=="No hay informacion" ?
+          <div className={sty.card}>
+            
+              <label>No hay informacion que buscas</label>
           </div>
+          :
+           <div>
+          <NotFound></NotFound>
+        </div>
+
+          
+         
         }
       </div>
     </div>

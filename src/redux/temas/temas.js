@@ -5,73 +5,73 @@ import axios from "axios";
 
 export const fetchTemas=createAsyncThunk("temas/fetchTemas", async({search,id,ref,empresa })=>{
     try {
-      
+      console.log(id)
       if(id)
       {
         if(search)
         {
-          const res= await axios.get(`https://qworkbaseback.up.railway.app/contenidos?search=${search}&id=${id}`,)
+          const res= await axios.get(`http://localhost:3001/contenidos?search=${search}&id=${id}`,)
           return res.data
 
         }
-        else if(search=="".toString())
+        else if(search=="")
         {
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos?id=${id}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}`,);
           return res.data
         }
         else if(ref)
         {
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos?id=${id}&ref=${ref}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}&ref=${ref}`,);
           return res.data
         }
         else if(empresa){
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos?id=${id}&empresa=${empresa}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}&empresa=${empresa}`,);
           return res.data
         }
         else
         {
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos?id=${id}`);
+          const res=await axios.get(`http://localhost:3001/contenidos?id=${id}`);
           return res.data
         }
       }
       else {
         if(search)
         {
-          const res= await axios.get(`https://qworkbaseback.up.railway.app/contenidos?search=${search}`,)
+          const res= await axios.get(`http://localhost:3001/contenidos?search=${search}`,)
           return res.data
 
         }
         else if(search=="")
         {
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos`,);
+          const res=await axios.get(`http://localhost:3001/contenidos`,);
           return res.data
         }
         else if(ref)
         {
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos?ref=${ref}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?ref=${ref}`,);
           return res.data
         }
         else if(empresa){
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos?empresa=${empresa}`,);
+          const res=await axios.get(`http://localhost:3001/contenidos?empresa=${empresa}`,);
           return res.data
         }
         else
         {
-          const res=await axios.get(`https://qworkbaseback.up.railway.app/contenidos`);
+          const res=await axios.get(`http://localhost:3001/contenidos`);
           return res.data
         }
       }
 
        
     } catch (error) {
-      console.log(error.response.data.msg)  
+      console.log(error)  
     } 
 }) 
 
 export const fetchTema=createAsyncThunk("tema/fetchTema", async(id)=>{
     try {
         
-        const res= await axios.get(`https://qworkbaseback.up.railway.app/contenidos/${id}`)
+        const res= await axios.get(`http://localhost:3001/contenidos/${id}`)
 
 
         return  res.data

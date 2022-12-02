@@ -46,7 +46,7 @@ const navigate=useNavigate()
       });
       const handle = async (id) => {
         const res = await axios.delete(
-          `https://qworkbaseback.up.railway.app/contenidos/${id}`
+          `http://localhost:3001/contenidos/${id}`
         );
 
    

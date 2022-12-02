@@ -21,7 +21,7 @@ export const CrearUsuario = () => {
     usuario: "",
     perfiles: "",
     sistRefe: [],
-    empresas: [],
+    empresa: [],
     validate: false,
   });
   const [error, setError] = useState({});
@@ -49,25 +49,27 @@ export const CrearUsuario = () => {
   const handleEmpresas = (e) => {
     setState({
       ...state,
-      empresas: [...state.empresas, e.target.value],
+      empresa: [...state.empresa, e.target.value],
     });
-    if (empresas.find((a) => a.id == e.target.value)) {
-      let agregar = empresas.find((a) => a.id == e.target.value);
-      setestadoEmpresa([...estadoEmpresa, agregar]);
- 
+    if (empresas.find((a) => a.DescripEmpresa == e.target.value)) {
+      let agregar = empresas.find((a) => a.DescripEmpresa == e.target.value);
+      setestadoEmpresa([...estadoEmpresa, agregar.DescripEmpresa]);
+      if (estadoEmpresa.length == 0) {
+        setestadoEmpresa([...estadoEmpresa, agregar.DescripEmpresa]);
+      }
     }
-    delete error.empresas;
+    delete error.empresa;
   };
   const ClickCheckedSistemaRef = (e) => {
     setState({
       ...state,
       sistRefe: [...state.sistRefe, e.target.value],
     });
-    if (sistRef.find((a) => a.id == e.target.value)) {
-      let agregar = sistRef.find((a) => a.id == e.target.value);
-      setestadoSistema([...estadoSistema, agregar]);
+    if (sistRef.find((a) => a.DescripSistema == e.target.value)) {
+      let agregar = sistRef.find((a) => a.DescripSistema == e.target.value);
+      setestadoSistema([...estadoSistema, agregar.DescripSistema]);
       if (estadoSistema.length == 0) {
-        setestadoSistema([...estadoSistema, agregar]);
+        setestadoSistema([...estadoSistema, agregar.DescripSistema]);
       }
     }
 
@@ -75,7 +77,7 @@ export const CrearUsuario = () => {
   };
   const handleDeleteSistRef = (id) => {
     const deletSistRef = state.sistRefe.filter((e) => e !== id);
-    const deletEstadoSistR = estadoSistema.filter((e) => e.id !== id);
+    const deletEstadoSistR = estadoSistema.filter((e) => e !== id);
     setState({
       ...state,
       sistRefe: deletSistRef,
@@ -83,11 +85,11 @@ export const CrearUsuario = () => {
     setestadoSistema(deletEstadoSistR);
   };
   const handleDeleteEmpresa = (id) => {
-    const deletEmpresa = state.empresas.filter((e) => e !== id);
-    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e.id !== id);
+    const deletEmpresa = state.empresa.filter((e) => e !== id);
+    const deletEstadoEmpresas = estadoEmpresa.filter((e) => e !== id);
     setState({
       ...state,
-      empresas: deletEmpresa,
+      empresa: deletEmpresa,
     });
     setestadoEmpresa(deletEstadoEmpresas);
   };
@@ -96,6 +98,8 @@ export const CrearUsuario = () => {
     navigate(-1);
   };
 
+
+  console.log(estadoSistema)
   var alpha = new RegExp("^[a-zA-Z0-9 ]+$");
 
   //sin numeros
@@ -123,9 +127,9 @@ export const CrearUsuario = () => {
       ? (error.sistRefe = "Seleccione algunos de los sistemas")
       : delete error.sistRefe;
 
-    state.empresas.length == 0
-      ? (error.empresas = "Seleccione algunos de empresas")
-      : delete error.empresas;
+    state.empresa.length == 0
+      ? (error.empresa = "Seleccione algunos de empresas")
+      : delete error.empresa;
     setState((prevProps) => ({
       ...prevProps,
       [event.target.name]: event.target.value,
@@ -136,14 +140,14 @@ export const CrearUsuario = () => {
 
   const postUsuario = async () => {
     try {
-      const res = await axios.post("https://qworkbaseback.up.railway.app/users", {
+      const res = await axios.post("http://localhost:3001/users", {
         fullname: state.fullname,
         usuar: state.usuario,
         email: state.email,
         password: state.password,
         idPerfiles: state.perfiles,
         idSistemas: state.sistRefe,
-        idEmpresas: state.empresas,
+        idEmpresas: state.empresa,
         active: true,
         // Date:new Date( new Date().getTime() -  ( new Date().getTimezoneOffset() * 60000 ) )
       });
@@ -299,11 +303,11 @@ export const CrearUsuario = () => {
                   </select>
                   <div className={styles.added_perfiles}>
                     {estadoSistema.map((e) => (
-                      <div  key={e.id}>
+                      <div  key={e}>
                         <p>
-                          {e.DescripSistema}{" "}
+                          {e}{" "}
                           <MdClose
-                            onClick={() => handleDeleteSistRef(e.id)}
+                            onClick={() => handleDeleteSistRef(e)}
                             className={styles.delete_added_tech}
                           />
                         </p>
@@ -337,11 +341,11 @@ export const CrearUsuario = () => {
                     </select>
                     <div className={styles.added_perfiles}>
                       {estadoEmpresa.map((e) => (
-                        <div  key={e.id}>
+                        <div  key={e}>
                           <p>
-                            {e.DescripEmpresa}
+                            {e}
                             <MdClose
-                              onClick={() => handleDeleteEmpresa(e.id)}
+                              onClick={() => handleDeleteEmpresa(e)}
                               className={styles.delete_added_tech}
                             />
                           </p>

@@ -35,7 +35,7 @@ export const ClasifTema = () => {
         });
         const handle = async (id) => {
           const res = await axios.delete(
-            `https://qworkbaseback.up.railway.app/clasifTema/${id}`
+            `http://localhost:3001/clasifTema/${id}`
           );
   
      
