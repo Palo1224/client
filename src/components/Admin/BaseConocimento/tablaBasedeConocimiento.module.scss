@@ -48,18 +48,25 @@
   
   .table tbody tr {
     border-bottom: 1px solid #dddddd;
+    border: none;
+
     
   }
   .table tbody  {
     width: 70%;    
+    border: none;
+
   }
   
   .table tbody tr:nth-of-type(even){
       background-color: white;
+      border: none;
+
   }
   
   .table tbody tr:nth-of-type(odd){
       background-color: rgb(238, 238, 238);
+      border: none;
   }
   
   .table_headers tr{

@@ -30,20 +30,7 @@ const navigate=useNavigate()
   const handleDelete = async (id) => {
     try {
 
-      Swal.fire({
-        icon: "warning",
-        text: "Estás seguro que deseas eliminar?",
-        showConfirmButton: true,
-        confirmButtonColor: "#347cc3",
-        confirmButtonText:"Si",
-
-        showCancelButton: true,
-        cancelButtonText:"No"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          handle(id);
-        }
-      });
+    
       const handle = async (id) => {
         const res = await axios.delete(
           `http://localhost:3001/contenidos/${id}`
