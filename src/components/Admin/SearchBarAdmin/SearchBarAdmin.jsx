@@ -78,7 +78,7 @@ export const SearchBarAdmin = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearch(e.target.value);
+    // setSearch(e.target.value);
     if(select=="Base de Conocimiento")
     { 
       e.preventDefault()
@@ -92,7 +92,7 @@ export const SearchBarAdmin = () => {
     else {
 
      
-        setSearch(e.target.value);
+        // setSearch(e.target.value);
         dispatch(fetchUsers({ search,estado:estado,empresas:bussi }));
       
 

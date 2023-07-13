@@ -62,7 +62,7 @@ export const LoginRedactor = () => {
   };
 
   const switchFormForgot = () => {
-    dispatch(modalActions.activateLoginAdmin(false));
+    dispatch(modalActions.activeLoginAdmin(false));
     dispatch(modalActions.activateForgotPass(true));
   };
 

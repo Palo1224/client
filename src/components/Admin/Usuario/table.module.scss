@@ -137,15 +137,17 @@
   flex-direction: row;
   font-size: 14px;
   gap:10px;
+  
   select{
-        height: 20px;
-    width: 110px;
+        height: 30px;
+    width: 120px;
     border: 1px solid #347cc3;
     padding: 0px 0px 0px 1rem;
     border-radius: 3px 3px 3px 3px;
     outline: none;
    
   }
+
 
 
 }
@@ -260,10 +262,10 @@
         outline: none;
       }
       select{
-        height: 15px;
+        height: 20px;
         font-size:12px;
   
-        width: 70px;
+        width: 100px;
         border: 1px solid #347cc3;
         padding: 0px 0px 0px 1rem;
         border-radius: 3px 3px 3px 3px;

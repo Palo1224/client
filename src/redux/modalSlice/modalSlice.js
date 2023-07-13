@@ -38,6 +38,9 @@ const modalSlice = createSlice({
         activeLoadingArchivo(state, {payload}){
             state.activeLoadingArchivo = payload;
         },
+        activateForgotPass(state, {payload}){
+            state.activateForgotPass = payload;
+        },
         
         
 
